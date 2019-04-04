@@ -1,0 +1,42 @@
+<div class="modal-header">
+        <i class="fa fa-file-o"> <span>{{titleName}}</span></i>
+</div>
+<div class="modal-body wrapper-lg">
+    <div>
+        <form role="form">
+            <div class="form-group">
+                <label>设施类型</label>
+                <input type="text" class="form-control" placeholder="" ng-model="updateData.Type">
+            </div>
+            <div class="form-group">
+                <label>设施名称</label>
+                <input type="text" class="form-control" placeholder="" ng-model="updateData.bridgename">
+            </div>
+            <div class="form-group">
+                <label>检测人</label>
+                <input type="text" class="form-control" placeholder="" ng-model="updateData.CheckUsers">
+            </div>
+            <div class="form-group">
+                <label>检测单位</label>
+                <input type="text" class="form-control" placeholder="" ng-model="updateData.CheckDept">
+            </div>
+            <div class="form-group">
+                <label>检测日期</label>
+                <input id="exampleInputPassword2" ng-model="updateData.CheckDate" class="Wdate mainbg form-control  "
+                    onclick="WdatePicker({skin:'whyGreen',dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'2015-1-1 00:00:00',maxDate:'2025-12-31 23:59:59',onpicked: function(){$(this).trigger('change')}})"
+                    onChange="">
+            </div>
+
+            <div class="form-group">
+                <label>所属任务</label>
+                <input type="text" class="form-control" placeholder="" ng-model="updateData.BelongTask">
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal-footer">
+        <div class=" form-group" style="height:30px;">
+                <button class="btn btn-default pull-right " ng-click="cancel()">取消</button>
+                <button class="btn btn-primary pull-right publicpage_mgR10" ng-click="ok()">保存</button>
+            </div>
+</div>

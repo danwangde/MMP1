@@ -1,0 +1,41 @@
+<!-- navbar collapse -->
+<div>
+    <div class="collapse pos-rlt navbar-collapse box-shadow publicpage_mgL0  {{app.settings.navbarCollapseColor}}"
+         ng-controller="header_controller">
+        <span class="text-lt header_logo">
+            <!--<img src="img/logo.png" alt="." >-->
+            <span class="hidden-folded m-l-xs ng-binding">西安敏文基础设施养护管理平台</span>
+        </span>
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a href="" class=" " ui-sref="{{address}}">
+                      <span class="fa-stack fa-lg  pull-right m-t-n-sm m-b-n-sm ">
+                <i class="fa fa-th-large fa-stack-1x text-white"></i>
+              </span>
+                    切换系统
+                </a>
+
+            </li>
+            <li class="dropdown" dropdown>
+                <a href class="dropdown-toggle clear" dropdown-toggle style="color:#f5f5f5">
+              <span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
+                <img src="img/a0.jpg" alt="...">
+                <i class="on md b-white bottom"></i>
+              </span>
+                    <span class="hidden-sm hidden-md">欢迎：{{app.globalInfo.userInfo.username}}</span> <b
+                        class="caret"></b>
+                </a>
+                <!-- dropdown -->
+                <ul class="dropdown-menu animated fadeInRight w">
+                    <li>
+                        <a ui-sref="signin">退出</a>
+                    </li>
+                </ul>
+                <!-- / dropdown -->
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- / navbar collapse -->
+
+

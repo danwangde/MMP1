@@ -1,0 +1,18 @@
+<style>
+    .focus {
+        border-bottom: 2px solid #283650
+    }
+</style>
+<div ng-controller="manage_controller">
+    <div style="width:1200px;margin:0 auto">
+        <div ng-repeat="gl in managedata" style="width:20%;height:150px;margin:50px auto;float: left;cursor: pointer">
+            <span ng-click="clickGL($index)" ng-class='{focus: $index==focus}'>{{gl.name}}</span>
+        </div>
+        <div ng-repeat="item in content" ng-click="clickItem(item)"
+             style="width:{{100/content.length}}%;height:150px;margin:50px auto;float: left;background: url('../img/{{$index}}.jpg') no-repeat center top">
+            <span style="display: block;margin-left:47%;margin-top:-30px">{{item.name}}</span></div>
+    </div>
+</div>
+
+
+

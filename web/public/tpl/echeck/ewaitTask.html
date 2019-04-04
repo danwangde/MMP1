@@ -1,0 +1,64 @@
+<div ng-controller="echeckBridgeBacklog_controller">
+    <div class="bg-light lter b-b wrapper-md">
+        <form class="form-inline ng-pristine ng-valid" role="form" >
+            <div class="form-group">
+                <label for="">计划类型：</label>
+                <select class="form-control" ng-model="type" ng-options="item.value as item.name for item in dataType">
+                    <option value="" hidden>--设施选择--</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="">计划名称：</label>
+                <input type="text" class="form-control">
+            </div>
+            <button class="btn btn-success" style="border-radius: 4px;" ng-click="">
+				<span class="glyphicon glyphicon-search">查询</span>
+            </button>
+            <button class="btn btn-danger" ng-click="addRegular(items)">添加记录</button>
+        </form>
+    </div>
+    <div class="wrapper-md">
+        <div class="panel panel-default">
+            <div>
+                <table class="table  table-striped m-b-none">
+                    <thead>
+                        <tr>
+                            <th style="width:16%;">计划类型</th> 
+                            <th style="width:16%;">计划任务类型</th> 
+                            <th style="width:16%;">计划类型名称</th> 
+                            <th style="width:16%;">计划名称</th> 
+                            <th style="width:16%;">时间</th> 
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="x in backlog">
+                            <td>{{x.type}}</td>
+                            <td>{{x.taskType}}</td>
+                            <td>{{x.taskTypeName}}</td>
+                            <td>{{x.planName}}</td>
+                            <td>{{x.date}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <footer class="panel-footer">
+                <div class="row">
+                    <div class="col-sm-4 text-left">
+                        <small class="text-muted inline m-t-sm m-b-sm">显示1-3条，共3条</small>
+                    </div>
+                    <div class="col-sm-4 text-center">
+                        <ul class="pagination pagination-sm m-t-none m-b-none">
+                            <li><a href><i class="fa fa-chevron-left"></i></a></li>
+                            <li><a href>1</a></li>
+                            <li><a href>2</a></li>
+                            <li><a href>3</a></li>
+                            <li><a href>4</a></li>
+                            <li><a href>5</a></li>
+                            <li><a href><i class="fa fa-chevron-right"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+</div>

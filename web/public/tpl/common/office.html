@@ -1,0 +1,7 @@
+<div ng-controller="office_controller">
+    <div ng-repeat="tab in tabs" style="width:{{tabs.length==10?20:33}}%;height:150px;margin:50px auto;float: left;background: url('../img/{{$index}}.jpg') no-repeat center top" ng-click="clickTab(tab)">
+        <span style="display: block;margin-left:47%;margin-top:-30px">{{tab.name}}</span>
+    </div>
+
+
+</div>

@@ -1,0 +1,132 @@
+<div class="wrapper-md" ng-controller="manageBridgeIndex_controller">
+    <ul class="nav">
+        <li><a ui-sref="app.manageBridgeIndex"><span class="glyphicon glyphicon-home"></span></a></li>
+    </ul>
+    <div class="row" style="margin-top: 50px;">
+        <div class="col-md-4">
+            <div class="ibox" style="margin-bottom: 15px;">
+                <div class=" ibox-title">
+                    <h5>桥梁检测信息统计</h5>
+                </div>
+                <div class="ibox-content">
+                    <line options="lineOptions"></line>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="col-sm-6 col-xs-12">
+                <div class="info-box bg-aqua">
+                    <span class="info-box-icon">
+                        <i class="glyphicon glyphicon-bookmark"></i>
+                    </span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">未修补的病害</span>
+                        <span class="info-box-number">86</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <div class="info-box bg-deepBlue">
+                     <span class="info-box-icon">
+                        <i class="glyphicon glyphicon-hand-right"></i>
+                    </span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">桥梁总数量</span>
+                        <span class="info-box-number">128</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <div class="info-box bg-green">
+                     <span class="info-box-icon ">
+                        <i class="glyphicon glyphicon-bell"></i>
+                    </span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">桥梁总长度</span>
+                        <span class="info-box-number">36218.25m</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <div class="info-box bg-orange">
+                     <span class="info-box-icon ">
+                        <i class="glyphicon glyphicon-bullhorn"></i>
+                    </span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">桥梁总面积</span>
+                        <span class="info-box-number">6489㎡</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="ibox" style="margin-bottom: 15px;">
+                <div class=" ibox-title">
+                    <h5>桥梁设施状况统计</h5>
+                </div>
+                <div class="ibox-content">
+                    <ul class="nav">
+                        <li class="col-sm-3" ng-repeat="item in titles" style="height:200px;margin:20px auto;padding:0;text-align: center;">
+                            <div >{{item.title}}</div>
+                            <div class="circle" ng-class="{circle1:$index==0,circle2:$index==1,circle3:$index==2,circle4:$index==3}"></div>
+                            <i style="font-style: normal;">{{item.data}}</i>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row" style="margin-top:100px;">
+        <div class="col-md-6 content_border" style="margin-bottom: 15px;height:310px;">
+            <!-- <div class="content_border">-->
+            <table class="table" style="background-color: #fff">
+                <thead>
+                <tr style="background-color: #f5f5f5;border:none;">
+                    <th>桥梁名称</th>
+                    <th>桥梁类型</th>
+                    <th>养护等级</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in bridgeInfoNow">
+                    <td style="text-align: left;">{{item.BridgeName}}</td>
+                    <td style="text-align: left;">{{item.MainStructType}}</td>
+                    <td style="text-align: center;">{{item.CuringGrade}}</td>
+                </tr>
+                </tbody>
+            </table>
+            <div pagination
+                 total-items="totalItems"
+                 ng-model="currentPage"
+                 max-size="maxSize"
+                 next-text=">"
+                 previous-text="<"
+                 num-pages="totalPage"
+                 items-per-page="itemsPerPage"
+                 ng-change="changePage()"
+                 style="margin: 10px 30% 0">
+
+            </div>
+        </div>
+
+
+
+        <!-- <div>当前页：{{currentPage}},总页数：{{totalPage}}</div>-->
+        <!-- </div>-->
+
+        <div class="col-md-6" style="margin-bottom: 15px;">
+            <div class="ibox">
+                <div class=" ibox-title">
+                    <h5>病害信息统计</h5>
+                </div>
+                <div class="ibox-content">
+                    <line options="lineOptions2"></line>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

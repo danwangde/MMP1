@@ -1,0 +1,110 @@
+<div ng-controller="passageAssess_controller">
+	<script type="text/ng-template" id="myModalContent.html">
+		<div ng-include="'tpl/modal/passageassModal.html'" ></div>
+	</script>
+	<div class="bg-light lter b-b wrapper-md">
+		<form class="form-inline ng-pristine ng-valid" role="form">
+			<div class="form-group">
+				<label for="exampleInputPassword"> 通道名称：</label>
+				<input type="text" class="form-control" id="exampleInputPassword" ng-model="componentName" ng-required="true">
+			</div>
+			<div class="form-group">
+				<label for="exampleInputPassword2">检测开始日期：</label>
+				<input ng-model="time.start"
+					   id="exampleInputPassword2"
+					   class="Wdate mainbg form-control  "
+					   onclick="WdatePicker({skin:'whyGreen',dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'2015-1-1 00:00:00',maxDate:'2025-12-31 23:59:59',onpicked: function(){$(this).trigger('change')}})"
+					   ng-required="true" onChange="">
+			</div>
+			<div class="form-group">
+				<label for="exampleInputPassword3">检测结束时间：</label>
+				<input ng-model="time.end"
+					   id="exampleInputPassword3"
+					   class="Wdate mainbg form-control  "
+					   onclick="WdatePicker({skin:'whyGreen',dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'2015-1-1 00:00:00',maxDate:'2025-12-31 23:59:59',onpicked: function(){$(this).trigger('change')}})"
+					   ng-required="true" onChange="">
+			</div>
+			<button class="btn btn-success" style="border-radius: 4px;" ng-click="">
+				<span class="glyphicon glyphicon-search">查询</span>
+			</button>
+			<button class="btn btn-default" style="border-radius: 4px;" ng-click="">
+				<span class="glyphicon glyphicon-repeat">重置</span>
+			</button>
+		</form>
+
+	</div>
+	<div class="wrapper-md">
+		<div class="panel panel-default ">
+			<div>
+				<table class="table table-striped m-b-none" >
+					<thead>
+					<tr>
+						<th style="width:12%">
+							通道名称
+						</th>
+						<th style="width:10%">
+							评价等级
+						</th>
+						<th style="width:10%">
+							通道评分
+						</th>
+						<th style="width:10%">
+							检测日期
+						</th>
+						<th style="width:10%">
+							评价日期
+						</th>
+						<th style="width:16%">
+							评价单位
+						</th>
+
+						<th style="width:10%">
+							查看
+						</th>
+						<th style="width:10%">
+							PUCI评分
+						</th>
+
+					</tr>
+					</thead>
+					<tbody>
+
+					<tr ng-repeat=" item in passageAssess ">
+						<td>{{item.name}}</td>
+						<td>{{item.grade}}</td>
+						<td>{{item.score}}</td>
+						<td>{{item.checkDate}}</td>
+						<td>{{item.evalDate}}</td>
+						<td>{{item.checkUnit}}</td>
+						<td ng-click="notice(item)">
+							<a href="" class="redLook"><i class="glyphicon glyphicon-hand-up"></i></a>
+						</td>
+						<td ng-click="notice(item)">
+							<a href="javascript:void(0);" style="color:#337ab7;" ><span class="glyphicon glyphicon-edit"></span></a>
+						</td>
+					</tr>
+
+					</tbody>
+				</table>
+			</div>
+			<footer class="panel-footer">
+                <div class="row">
+                    <div class="col-sm-4 text-left">
+                        <small class="text-muted inline m-t-sm m-b-sm">显示1-3条，共3条</small>
+                    </div>
+                    <div class="col-sm-4 text-center">
+                        <ul class="pagination pagination-sm m-t-none m-b-none">
+                            <li><a href><i class="fa fa-chevron-left"></i></a></li>
+                            <li><a href>1</a></li>
+                            <li><a href>2</a></li>
+                            <li><a href>3</a></li>
+                            <li><a href>4</a></li>
+                            <li><a href>5</a></li>
+                            <li><a href><i class="fa fa-chevron-right"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </footer>
+		</div>
+	</div>
+</div>

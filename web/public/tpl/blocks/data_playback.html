@@ -1,0 +1,134 @@
+<!-- navbar header -->
+<div class="navbar-header {{app.settings.navbarHeaderColor}}">
+    <button class="pull-right visible-xs dk" ui-toggle-class="show" data-target=".navbar-collapse">
+        <i class="glyphicon glyphicon-cog"></i>
+    </button>
+    <button class="pull-right visible-xs" ui-toggle-class="off-screen" data-target=".app-aside" ui-scroll="app">
+        <i class="glyphicon glyphicon-align-justify"></i>
+    </button>
+
+</div>
+
+
+<div class="collapse pos-rlt navbar-collapse box-shadow {{app.settings.navbarCollapseColor}}"
+     ng-controller="data_playback_controller">
+
+    <div class="publicpage_hg60">
+        <ul class="nav navbar-nav hidden-sm publicpage_mgT8">
+            <li class="dropdown dropdown publicpage_mgR5 pubicpage_mwd160" dropdown>
+
+                <select ng-model="selectGroup" class="form-control"
+                        ng-options="item.group_name for item in usermsg.group_arr"
+                        ng-change="changeGroup()">
+                    <option value="" selected hidden></option>
+                </select>
+
+            </li>
+            <li class="dropdown pubicpage_mwd160 publicpage_mgR5" dropdown>
+
+                <select ng-model="selectSC
+" class="form-control" ng-options="m.name for m in selectGroup.SC_arr"
+                        ng-change="changeSC()">
+                    <option value="" selected hidden></option>
+                </select>
+
+            </li>
+            <li class="dropdown  pubicpage_mwd160 publicpage_mgR5" dropdown>
+
+                <select class="form-control ">
+                    <option value="">测站1</option>
+                    <option value="">测站2</option>
+                    <option value="">测站3</option>
+                </select>
+
+            </li>
+        </ul>
+
+
+        <ul class="nav navbar-nav navbar-right">
+
+            <li>
+                <a href class="hidden-sm hidden-md" ng-init="SCTime='00-00-00 00:00:00'">
+                    星上时间<span class="header_time">{{SCTime}}</span>
+                </a>
+
+            </li>
+            <li>
+                <a href class="hidden-sm hidden-md" ng-init="localTime='00-00-00 00:00:00'">
+                    北京时间<span class="header_time">{{localTime}}</span>
+                </a>
+
+            </li>
+            <li>
+                <a href class="hidden-sm hidden-md">
+                    主站名称：三亚站
+                </a>
+
+            </li>
+
+
+            <li>
+                <a href class=" clear">
+              <span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
+              <img src="img/user.png" alt="...">
+              </span>
+                    <span class="hidden-sm hidden-md">欢迎&nbsp;&nbsp;{{usermsg.username}}</span>
+                </a>
+                <!-- / dropdown -->
+            </li>
+        </ul>
+    </div>
+
+    <div class="pubicpage_textlablebg publicpage_hg50">
+        <div class="form-group  col-sm-2">
+            <label class=" col-sm-4 control-label pulicpage_pd0 pubicpage_lh34">开始时间</label>
+            <div class="col-sm-8 pulicpage_pd0"><input ng-model="stime"
+                                                       class="Wdate mainbg form-control publicpage_timeinput col-sm-6"
+                                                       onFocus="WdatePicker({skin:'whyGreen',dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'2015-1-1 00:00:00',maxDate:'2025-12-31 23:59:59',onpicked: function(){$(this).trigger('change')}})"
+                                                       ng-required="true" onChange=""></div>
+        </div>
+        <div class="form-group  col-sm-2">
+            <label class=" col-sm-4 control-label pulicpage_pd0 pubicpage_lh34">结束时间</label>
+            <div class="col-sm-8 pulicpage_pd0"><input ng-model="etime"
+                                                       class="Wdate mainbg form-control publicpage_timeinput col-sm-6"
+                                                       onFocus="WdatePicker({skin:'whyGreen',dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'2015-1-1 00:00:00',maxDate:'2025-12-31 23:59:59',onpicked: function(){$(this).trigger('change')}})"
+                                                       ng-required="true" onChange=""></div>
+        </div>
+        <div class=" hidden-xs  pubicpage_dpib">
+
+            <div class="col   icon_bofang    publicpage_mgL10 publicpage_floatL" ng-click="play()" ng-show="palyBtn">
+                <img src="../img/icon_play.png" alt="">
+                <span class="icon_fs">播放</span>
+            </div>
+
+            <div class="col    icon_zanting publicpage_mgL10 publicpage_floatL" ng-click="pause()" ng-show="pauseBtn">
+                <img src="../img/icon_zt.png" alt="">
+                <span class="icon_fs">暂停</span>
+            </div>
+            <div class="col    icon_jiansu publicpage_mgL10 publicpage_floatL" ng-click="speed_down()">
+                <img src="../img/icon_jian.png" alt="">
+                <span class="icon_fs">减速</span>
+            </div>
+            <div class="col    icon_jiasu publicpage_mgL10 publicpage_floatL" ng-click="speed_up()">
+                <img src="../img/icon_jia.png" alt="">
+                <span class="icon_fs">加速</span>
+            </div>
+            <div class="col    icon_fuwei publicpage_mgL10 publicpage_floatL" ng-click="reset()">
+                <img src="../img/icon_fw.png" alt="">
+                <span class="icon_fs">复位</span>
+            </div>
+            <div class="col    icon_chaxun publicpage_mgL10 publicpage_floatL" ng-click="select()">
+                <img src="../img/icon_chaxun.png" alt="">
+                <span class="icon_fs">搜索</span>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+

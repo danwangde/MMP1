@@ -1,0 +1,33 @@
+<div ng-controller="signin_controller " class="signin_bg" ng-style="winowHeight">
+    <div class="container w-xxl w-auto-xs signin_container" ng-init="app.settings.container = false;">
+        <p class="navbar-brand block signin_title"  >山东省市政基础设施养护管理平台</p>
+        <div class="m-b-lg signin_form ">
+            <form name="form" class="form-validation">
+                <div class="text-danger wrapper text-center" ng-show="authError">
+                    {{authError}}
+                </div>
+                <div class="list-group list-group-sm">
+                    <div class="list-group-item">
+                        <input type="text" placeholder="用户名" class="form-control  signin_input"
+                               ng-model="user.username">
+                    </div>
+                    <div class="list-group-item">
+                        <input type="password" placeholder="密码" class="form-control  signin_input"
+                               ng-model="user.password"
+                        >
+                    </div>
+                </div>
+                <div class="text-center m-t m-b publicpage_pt0l10" >
+                    <div class="line line-dashed"></div>
+                    <button type="submit" class="signin_button btn-lg  btn-block " ng-click="login()"
+                            ng-disabled='form.$invalid'>登录
+                    </button>
+                    <p class="text-center pubicpage_mg10" >
+                        <small>本系统支持谷歌、火狐、搜狗、IE11及以上浏览器</small>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

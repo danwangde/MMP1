@@ -1,0 +1,139 @@
+<div ng-controller="managePublicComponents_controller">
+
+    <script type="text/ng-template" id="myModalContent.html">
+        <div ng-include="'tpl/modal/bridgeassModal.html'" ></div>
+	</script>
+    <div class="bg-light lter b-b wrapper-md">
+        <form class="form-inline ng-pristine ng-valid" role="form">
+            <div class="form-group">
+                <label for="exampleInputPassword">构件名称：</label>
+                <input type="text" class="form-control" id="exampleInputPassword" ng-model="bridgeName"
+                    ng-required="true">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword">构件类型：</label>
+                <select class="form-control">
+                    <option value="" hidden>--请选择--</option>
+                    <option value="0">桥梁构件</option>
+                    <option value="0">人行通道构件</option>
+                </select>
+            </div>
+
+            <button class="btn btn-success" style="border-radius: 4px;" ng-click="">
+                <span class="glyphicon glyphicon-search">查询</span>
+            </button>
+            <button class="btn btn-danger" style="border-radius: 4px;" ng-click="">
+                添加构件类型
+            </button>
+        </form>
+
+    </div>
+    <div class="wrapper-md">
+        <div class="panel panel-default">
+            <div>
+                <table class="table  table-striped m-b-none">
+                    <thead>
+                        <tr>
+                            <th style="width:12%;text-align:center;">
+                                构件类型
+                            </th>
+                            <th style="width:12%;text-align:center;">
+                                所属结构
+                            </th>
+                            <th style="width:12%;text-align:center;">
+                                构件类型名称
+                            </th>
+
+                            <th style="width:12%;text-align:center;">
+                                管理属性
+                            </th>
+                            <th style="width:12%;text-align:center;">
+                                查看
+                            </th>
+                            <th style="width:12%;text-align:center;">
+                                权重维护
+                            </th>
+                            <th style="width:12%;text-align:center;">
+                                修改
+                            </th>
+                            <th style="width:12%;text-align:center;">
+                                删除
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <td style="text-align:center;">桥梁构件</td>
+                            <td style="text-align:center;">跨</td>
+                            <td style="text-align:center;">主节点</td>
+                            <td style="text-align:center;">市政</td>
+                            <td ng-click="showLoadtest()" style="text-align:center;"><a href="" class="redLook"><i
+                                        class="glyphicon glyphicon-hand-up">
+                                    </i></a></td>
+                            <td style="text-align:center;"><a href="javascript:void(0);" style="color:#337ab7;"
+                                    ng-click="addStructural(item)"><span class="glyphicon glyphicon-edit"></span></a>
+                            </td>
+                            <td style="text-align:center;"><a href="javascript:void(0);" style="color:#337ab7;"
+                                    ng-click="addStructural(item)"><span class="glyphicon glyphicon-edit"></span></a>
+                            </td>
+
+                            <td style="text-align:center;"><a href="" class="greenLook"
+                                    ng-click="removeStruct($index)"><i class="glyphicon glyphicon-remove-sign"></i></a>
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+                            <td style="text-align:center;">桥梁构件</td>
+                            <td style="text-align:center;">跨</td>
+                            <td style="text-align:center;">主节点</td>
+                            <td style="text-align:center;">市政</td>
+                            <td ng-click="showLoadtest()" style="text-align:center;"><a href="" class="redLook"><i
+                                        class="glyphicon glyphicon-hand-up">
+                                    </i></a></td>
+                            <td style="text-align:center;"><a href="javascript:void(0);" style="color:#337ab7;"
+                                    ng-click="addStructural(item)"><span class="glyphicon glyphicon-edit"></span></a>
+                            </td>
+                            <td style="text-align:center;"><a href="javascript:void(0);" style="color:#337ab7;"
+                                    ng-click="addStructural(item)"><span class="glyphicon glyphicon-edit"></span></a>
+                            </td>
+
+                            <td style="text-align:center;"><a href="" class="greenLook"
+                                    ng-click="removeStruct($index)"><i class="glyphicon glyphicon-remove-sign"></i></a>
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+
+
+
+                </table>
+            </div>
+            <footer class="panel-footer">
+                <div class="row">
+                    <div class="col-sm-4 text-left">
+                        <small class="text-muted inline m-t-sm m-b-sm">显示1-3条，共3条</small>
+                    </div>
+                    <div class="col-sm-4 text-center">
+                        <ul class="pagination pagination-sm m-t-none m-b-none">
+                            <li><a href><i class="fa fa-chevron-left"></i></a></li>
+                            <li><a href>1</a></li>
+                            <li><a href>2</a></li>
+                            <li><a href>3</a></li>
+                            <li><a href>4</a></li>
+                            <li><a href>5</a></li>
+                            <li><a href><i class="fa fa-chevron-right"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </footer>
+
+
+        </div>
+    </div>
+</div>

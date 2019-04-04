@@ -1,0 +1,131 @@
+<div class="modal-header">
+   <i class="fa fa-file-o"> <span>{{titleName}}</span></i>
+</div>
+<div class="modal-body" style="max-height: 500px;overflow: auto;">
+    <div>
+        <form role="form" class="">
+            <div class="form-group">
+                <h3>检测构件</h3>
+            </div>
+            <div class="form-group">
+                <label>常规定期检测<span style="color:red;vertical-align: middle;">*</span></label>
+                <input type="text" class="form-control" placeholder="" ng-model="updateData.type">
+            </div>
+            <div class="form-group">
+                <label>桥梁<span style="color:red;vertical-align: middle;">*</span></label>
+                <input type="text" class="form-control" placeholder="" ng-model="updateData.name">
+            </div>
+            <div class="form-group">
+                <label>构件<span style="color:red;vertical-align: middle;">*</span></label>
+                <input type="text" class="form-control" placeholder="" ng-model="updateData.component">
+            </div>
+            <div class="form-group">
+                <h3>混凝土钢筋分布及保护层厚度记录</h3>
+            </div>
+            <div class="form-group">
+                <label>钢筋种类</label>
+                <select name="" id="" class="form-control">
+                    <option value="0">主筋</option>
+                    <option value="1">箍筋</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>公称直径(mm)</label>
+                <input type="text" class="form-control" placeholder="" ng-model="updateData.BelongTask">
+            </div>
+            <div class="form-group">
+                <label>钢筋间距(mm)</label>
+                <input type="text" class="form-control" placeholder="" ng-model="updateData.BelongTask">
+            </div>
+            <div class="form-group">
+                <label>钢筋间距设计值(mm)</label>
+                <input type="text" class="form-control" placeholder="" ng-model="updateData.BelongTask">
+            </div>
+            <div class="form-group">
+                <label>保护层厚度(mm)</label>
+                <input type="text" class="form-control" placeholder="" ng-model="updateData.BelongTask">
+            </div>
+            <div class="form-group">
+                <label>保护层厚度设计值(mm)</label>
+                <input type="text" class="form-control" placeholder="" ng-model="updateData.BelongTask">
+            </div>
+            <div class="form-group">
+                <label>保护层厚度特征值(mm)</label>
+                <input type="text" class="form-control" placeholder="" ng-model="updateData.BelongTask">
+            </div>
+
+            <div class="form-group">
+                <h3>碳化深度记录表</h3>
+            </div>
+            <div class="form-group">
+                <label>碳化深度实测平均值(mm)</label>
+                <input type="text" class="form-control" placeholder="" ng-model="updateData.bridgename">
+            </div>
+
+            <div class="form-group">
+                <h3>混凝土强度记录表</h3>
+            </div>
+            <div class="form-group">
+                <label>混凝土强度检测方法</label>
+                <select name="" id="" class="form-control">
+                    <option value="0">回弹法</option>
+                    <option value="1">超声回弹综合法</option>
+                    <option value="2">取芯法</option>
+                    <option value="3">回弹结合取芯法</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>强度推定値(mpa)</label>
+                <input type="text" class="form-control" placeholder="" ng-model="updateData.BelongTask">
+            </div>
+            <div class="form-group">
+                <label>设计值(mpa)</label>
+                <input type="text" class="form-control" placeholder="" ng-model="updateData.BelongTask">
+            </div>
+
+            <div class="form-group">
+                <h3>氯离子含量记录表</h3>
+            </div>
+            <div class="form-group">
+                <label>氯离子含量最大值(%)</label>
+                <input type="text" class="form-control" placeholder="" ng-model="updateData.BelongTask">
+            </div>
+            <div class="form-group">
+                <label>氯离子含量最小值(%)</label>
+                <input type="text" class="form-control" placeholder="" ng-model="updateData.BelongTask">
+            </div>
+
+            <div class="form-group">
+                    <h3>混凝土电阻率记录表</h3>
+                </div>
+                <div class="form-group">
+                    <label>混凝土电阻率最大值(cm)</label>
+                    <input type="text" class="form-control" placeholder="" ng-model="updateData.BelongTask">
+                </div>
+                <div class="form-group">
+                    <label>混凝土电阻率最小值(cm)</label>
+                    <input type="text" class="form-control" placeholder="" ng-model="updateData.BelongTask">
+                </div>
+
+                <div class="form-group">
+                        <h3>钢筋锈蚀电位记录表</h3>
+                    </div>
+                    <div class="form-group">
+                        <label>钢筋锈蚀电位最大值(mv)</label>
+                        <input type="text" class="form-control" placeholder="" ng-model="updateData.BelongTask">
+                    </div>
+                    <div class="form-group">
+                        <label>钢筋锈蚀电位最小值(mv)</label>
+                        <input type="text" class="form-control" placeholder="" ng-model="updateData.BelongTask">
+                    </div>
+        </form>
+    </div>
+</div>
+<div class="modal-footer">
+        <div class=" form-group" style="height:30px;">
+                <button class="btn btn-default pull-right " ng-click="cancel()">取消</button>
+                <button class="btn btn-primary pull-right publicpage_mgR10" ng-click="ok()">保存</button>
+            </div>
+</div>

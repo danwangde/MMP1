@@ -1,0 +1,22 @@
+<div ng-controller="manageDataOut_controller">
+	<div class="bg-light lter b-b wrapper-md">
+		<form class="form-inline ng-pristine ng-valid" role="form">
+			<div class="from-group">
+				<label>查询数据类型：</label>
+				<select class="form-control" name="" id="" ng-model="dataType" ng-options="x.value as x.name for x in selType" ng-change="selBridge()">
+					<option value="" hidden>--请选择--</option>
+				</select>
+			</div>
+		</form>
+	</div>
+	<div class="wrapper-md">
+		<ng-include src="addHtml"></ng-include>
+
+		<div class="well-sm" style="text-align: center;">
+			<button type="button" class="btn btn-danger btn-sm">
+				<span class="glyphicon glyphicon-ok"></span>
+				确定
+			</button>
+		</div>
+	</div>
+</div>

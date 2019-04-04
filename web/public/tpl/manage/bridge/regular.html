@@ -1,0 +1,99 @@
+<div ng-controller="manageBridgeRegular_controller ">
+    <script type="text/ng-template" id="structureModal.html">
+        <div ng-include="'tpl/modal/structureDetail.html'"></div>
+    </script>
+    <script type="text/ng-template" id="diseaseModal.html">
+        <div ng-include="'tpl/modal/diseaseDetail.html'"></div>
+    </script>
+    <div class="bg-light lter b-b wrapper-md">
+        <form class="form-inline ng-pristine ng-valid" role="form">
+            <div class="form-group">
+                <label> 设施类型：</label>
+                <select name="" id="" class="form-control">
+                    <option value="">城市桥梁</option>
+                    <option value="">人行通道</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>设施名称：</label>
+                <input type="password" class="form-control" placeholder="">
+            </div>
+            <div cl
+            <div class="form-group">
+                <label>检测日期：</label>
+                <input ng-model="time.start"
+                id="exampleInputPassword2"
+                class="Wdate mainbg form-control  "
+                onclick="WdatePicker({skin:'whyGreen',dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'2015-1-1 00:00:00',maxDate:'2025-12-31 23:59:59',onpicked: function(){$(this).trigger('change')}})"
+                ng-required="true" onChange="">
+            </div>
+            <button class="btn btn-success">查询</button>
+        </form>
+
+    </div>
+    <div class="wrapper-md">
+        <div>
+            <div style="width:100%;border: 1px solid #ddd;font-weight: 700;background-color: #578ebe;color:#fff ">
+                <span style="width:10%;display: inline-block;border-right:1px solid #f5f5f5;padding:8px 14px;">设施类型</span>
+                <span style="width:10%;display: inline-block;border-right:1px solid #f5f5f5;padding:8px 14px;">设施名称</span>
+                <span style="width:10%;display: inline-block;border-right:1px solid #f5f5f5;padding:8px 14px;">检测人</span>
+                <span style="width:10%;display: inline-block;border-right:1px solid #f5f5f5;padding:8px 14px;">检测单位</span>
+                <span style="width:10%;display: inline-block;border-right:1px solid #f5f5f5;padding:8px 14px;">检测日期</span>
+                <span style="width:10%;display: inline-block;border-right:1px solid #f5f5f5;padding:8px 14px;">结构性能检测</span>
+                <span style="width:10%;display: inline-block;border-right:1px solid #f5f5f5;padding:8px 14px;">上报病害</span>
+                <span style="width:10%;display: inline-block;border-right:1px solid #f5f5f5;padding:8px 14px;">检测报告</span>
+                <span style="width:10%;display: inline-block;border-right:1px solid #f5f5f5;padding:8px 14px;">所属任务</span>
+                <span style="display: inline-block;padding:8px 14px;">BCI得分</span>
+            </div>
+            <div ng-repeat=" item in regularInfo " style="width:100%;padding:8px 14px;background-color:#fff;border-bottom: 1px solid #ddd;border-left: 1px solid #ddd;border-right: 1px solid #ddd;">
+                <span style="width:10%;display: inline-block">{{item.Type}}</span>
+                <span style="width:10%;display: inline-block">{{item.bridgename}}</span>
+                <span style="width:10%;display: inline-block">{{item.CheckUsers}}</span>
+                <span style="width:10%;display: inline-block">{{item.CheckDept}}</span>
+                <span style="width:10%;display: inline-block">{{item. CheckDate}}</span>
+                <span style="width:10%;display: inline-block"><a href="" ng-click="show()" class="redLook">查看</a></span>
+                <span style="width:10%;display: inline-block" ng-click="showDisease()"><a href="" class="redLook">查看</a></span>
+                <span style="width:10%;display: inline-block">{{item. CheckReport}}</span>
+                <span style="width:10%;display: inline-block">{{item. BelongTask}}</span>
+                <span style="display: inline-block;padding-bottom: 14px">{{item.BCI}}</span>
+                <div  ng-show="showTable" style="background-color: #e8f7f1">
+                    <table class="table m-b-none" >
+                        <thead style="background-color: #57be96;color:#fff">
+                        <tr>
+                            <th style="width:10%">
+                                设施编号
+                            </th>
+                            <th style="width:10%">
+                                设施类型
+                            </th>
+                            <th style="width:10%">
+                                设施名称
+                            </th>
+                            <th style="width:10%">
+                                构件
+                            </th>
+                            <th style="width:10%">
+                               查看
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <tr>
+                          <td>1</td>
+                          <td>人形通道</td>
+                          <td>北园大街人行通道</td>
+                          <td>主体构造物-衬砌</td>
+                          <td> <a href="" class="redLook cursorPoin"  ng-click="openModal()">  <i class="glyphicon glyphicon-hand-up"></i></a></td>
+                        </tr>
+
+                        </tbody>
+                        <tfoot class="hide-if-no-paging">
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

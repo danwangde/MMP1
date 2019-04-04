@@ -1,0 +1,89 @@
+<div ng-controller="manageBridgeStructural_controller ">
+    <script type="text/ng-template" id="structureModal.html">
+        <div ng-include="'tpl/modal/structureDetail.html'"></div>
+    </script>
+    <div class="bg-light lter b-b wrapper-md">
+        <form class="form-inline ng-pristine ng-valid" role="form">
+            <div class="form-group">
+                <label> 设施类型：</label>
+                <select name="" id="" class="form-control">
+                    <option value="">城市桥梁</option>
+                    <option value="">人行通道</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>设施名称：</label>
+                <input type="password" class="form-control" placeholder="">
+            </div>
+            <div cl
+            <div class="form-group">
+                <label>构件：</label>
+                <input type="password" class="form-control" placeholder="">
+            </div>
+            <button class="btn btn-success">查询</button>
+        </form>
+
+    </div>
+    <div class="wrapper-md">
+
+        <table class="table table-striped m-b-none">
+            <!-- 表头 -->
+            <thead>
+            <tr>
+                <th>设施编号</th>
+                <th>设施类型</th>
+                <th>设施名称</th>
+                <th>构件</th>
+                <th >查看</th>
+
+
+            </tr>
+            </thead>
+            <!-- /.表头 -->
+            <!-- 表体 -->
+            <tbody>
+
+
+            <tr>
+                <td>5</td>
+                <td>桥梁</td>
+                <td style="text-align: left;">张北路乌河桥</td>
+                <td style="text-align: left;">线路1-第1跨-空心板梁2</td>
+                <td  ng-click="openModal()"><a href="" class="redLook"><i class="glyphicon glyphicon-hand-up"></i></a></td>
+
+            </tr>
+
+            <tr>
+                <td>6</td>
+                <td>桥梁</td>
+                <td style="text-align: left;">胜利路桥</td>
+                <td style="text-align: left;">高速方向-第1跨-主梁</td>
+                <td ng-click="openModal()"><a href="" class="redLook"><i class="glyphicon glyphicon-hand-up"></i></a></td>
+
+            </tr>
+
+
+            </tbody>
+
+        </table>
+        <footer class="panel-footer">
+            <div class="row">
+                <div class="col-sm-4 text-left">
+                    <small class="text-muted inline m-t-sm m-b-sm">显示1-3条，共3条</small>
+                </div>
+                <div class="col-sm-4 text-center">
+                    <ul class="pagination pagination-sm m-t-none m-b-none">
+                        <li><a href><i class="fa fa-chevron-left"></i></a></li>
+                        <li><a href>1</a></li>
+                        <li><a href>2</a></li>
+                        <li><a href>3</a></li>
+                        <li><a href>4</a></li>
+                        <li><a href>5</a></li>
+                        <li><a href><i class="fa fa-chevron-right"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+</div>

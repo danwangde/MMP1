@@ -1,0 +1,184 @@
+<div ng-controller="manageInfoStatistics_controller">
+    <div class="bg-light lter b-b wrapper-md">
+        <h1 class="m-n font-thin h3"></h1>
+    </div>
+    <div class="row" style="margin-top:50px;">
+        <div class="col-sm-5">
+            <div class="panel panel-default">
+                <div class="panel-footer">
+                    <form role="form" class="clearfix form-inline text-center">
+                        <div class="form-group" >
+                            <label style="font-weight: bold;">城市名称</label>
+
+                            <select class="form-control " ng-model="selCity">
+                                <option value="">济南市</option>
+                                <option value="">淄博市</option>
+                                <option value="">枣庄市</option>
+                            </select>
+
+                            <label  style="font-weight: bold;">地区</label>
+
+                            <select class="form-control " ng-model="selZone">
+                                <option value="">--请选择--</option>
+                                <option value="52057787f5a34a799addc28fe34c1045">历下区</option>
+                                <option value="e3c2e24782974addb2d2e77954f767f7">历城区</option>
+                                <option value="e3c2e24782974addb2d2e77954f767f7">历城区</option>
+                                <option value="cceef140aff14cf3aa165a6791240706">平阴县</option>
+                            </select>
+
+
+                        </div>
+
+                        <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px;margin-top:2px;">
+                            <span class="glyphicon glyphicon-search"></span>
+                            查询
+                        </button>
+                    </form>
+                </div>
+                <div class="panel-body">
+                    <ul class="nav nav-tabs checkTab" style="background-color: #F5F5F5;">
+                        <li class="active">
+                            <a >桥梁信息统计 </a>
+                        </li>
+                    </ul>
+                    <div class="ibox-content" >
+                        <line1 options="lineOptions"></line1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-7">
+            <div class="panel panel-default">
+                <div class="panel-body" >
+                    <ul class="nav nav-tabs" style="background-color: #F5F5F5;">  <!--style="background-color: #F5F5F5;"-->
+                        <li class="active"><a data-target="#yongtu" data-toggle="tab">按桥梁用途分</a></li>
+                        <li ><a data-target="#jiegou" data-toggle="tab">按结构形式分</a></li>
+                        <li ><a data-target="#dengji" data-toggle="tab">按养护登记分</a></li>
+                        <li ><a data-target="#leibie" data-toggle="tab">按桥梁养护类别分</a></li>
+                    </ul>
+                    <div class="tab-content" style="height:458px;width:100%;overflow: auto;padding:10px 0 0;">
+                        <div class="tab-pane fade in active" id="yongtu">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>跨江桥</th>
+                                    <th>跨河涌桥</th>
+                                    <th>跨铁路桥</th>
+                                    <th>立交桥</th>
+                                    <th>高架桥</th>
+                                    <th>人行天桥</th>
+                                    <th>小计</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="item in classific">
+                                    <td>{{item.name}}</td>
+                                    <td>{{item.data1}}</td>
+                                    <td>{{item.data2}}</td>
+                                    <td>{{item.data3}}</td>
+                                    <td>{{item.data4}}</td>
+                                    <td>{{item.data5}}</td>
+                                    <td>{{item.data6}}</td>
+                                    <td>{{item.data7}}</td>
+                                </tr>
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade  " id="jiegou">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>梁桥</th>
+                                    <th>悬臂+挂梁</th>
+                                    <th>桁架桥</th>
+                                    <th>刚构桥</th>
+                                    <th>钢结构拱桥</th>
+                                    <th>圬工拱桥（无拱上构造）</th>
+                                    <th>圬工拱桥（有拱上构造）</th>
+                                    <th>钢筋混凝土拱桥</th>
+                                    <th>人行天桥（梁桥）</th>
+                                    <th>人行天桥（钢桁架桥）</th>
+                                    <th>小计</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="item in classific">
+                                    <td>{{item.name}}</td>
+                                    <td>{{item.data1}}</td>
+                                    <td>{{item.data2}}</td>
+                                    <td>{{item.data3}}</td>
+                                    <td>{{item.data4}}</td>
+                                    <td>{{item.data5}}</td>
+                                    <td>{{item.data6}}</td>
+                                    <td>{{item.data7}}</td>
+                                    <td>{{item.data8}}</td>
+                                    <td>{{item.data9}}</td>
+                                    <td>{{item.data10}}</td>
+                                    <td>{{item.data11}}</td>
+                                </tr>
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade  " id="dengji">
+                            <table class="table ">
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>I等</th>
+                                    <th>II等</th>
+                                    <th>III等</th>
+                                    <th>小计</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="item in classific">
+                                    <td>{{item.name}}</td>
+                                    <td>{{item.data1}}</td>
+                                    <td>{{item.data2}}</td>
+                                    <td>{{item.data3}}</td>
+                                    <td>{{item.data4}}</td>
+                                </tr>
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade  " id="leibie">
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>特大桥梁及特殊结构的桥梁</th>
+                                    <th>城市快速路网上的桥梁</th>
+                                    <th>城市主干路上的桥梁</th>
+                                    <th>城市次干路上的桥梁</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="item in classific">
+                                    <td>{{item.name}}</td>
+                                    <td>{{item.data1}}</td>
+                                    <td>{{item.data2}}</td>
+                                    <td>{{item.data3}}</td>
+                                    <td>{{item.data4}}</td>
+                                </tr>
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>

@@ -1,0 +1,100 @@
+
+<div ng-controller="manageBridgePassageway_controller ">
+    <script type="text/ng-template" id="myModalContent.html">
+            <div ng-include="'tpl/modal/bridgeInfo.html'"></div>
+        </script>
+    <div class="bg-light lter b-b wrapper-md">
+        <form class="form-inline ng-pristine ng-valid" role="form">
+            <div class="form-group">
+                <label for="exampleInputEmail2">通道名称：</label>
+                <input type="email" class="form-control" id="exampleInputEmail2" placeholder="">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword2">所属区域：</label>
+                <input type="password" class="form-control" id="exampleInputPassword2" placeholder="">
+            </div>
+            <div class="form-group">
+                <label>城镇：</label>
+                <select class="form-control  inline">
+                    <option value="0">梁桥</option>
+                    <option value="1">桁架桥</option>
+    
+                </select>
+            </div>
+            <button class="btn btn-success">查询</button>
+            <button type="button" class="btn btn-sm btn-default pull-right"><i class="fa fa-plus fa-fw m-r-xs"></i>新建通道</button>
+        </form>
+    
+    </div>
+    <div class="wrapper-md">
+            <div>
+    
+    
+                <table class="table table-striped m-b-none">
+                    <thead>
+                        <tr>
+                            <th >
+                                通道编号
+                            </th>
+                            <th >
+                                通道名称
+                            </th>
+                            <th >
+                                总长
+                            </th>
+                            <th >
+                                净宽
+                            </th>
+                            <th >
+                                净高    
+                            </th>
+    
+                            <th >
+                                管理单位
+                            </th>
+                            <th >
+                                查看
+                            </th>
+                            <th >
+                                删除
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+    
+                        <tr ng-repeat=" item in passagewayInfo" ng-class='{focus: $index==focus}' ng-click="clickPassageway ($index)">
+                            <td>{{item.ID}}</td>
+                            <td>{{item.PassagewayName}}</td>
+                            <td>{{item.Length}}</td>
+                            <td>{{item.Width}}</td>
+                            <td>{{item.High}}</td>
+                            <td>{{item.ManageUnit}}</td>
+                            <td  ng-click="clickBridge ($index)"><a href="" class="redLook"><i class="glyphicon glyphicon-hand-up"></i></a></td>
+                            <td><a href=""  class="greenLook"><i class="glyphicon glyphicon-remove-sign"></i></a></td>
+                        </tr>
+    
+                    </tbody>
+
+                </table>
+                <footer class="panel-footer">
+                    <div class="row">
+                        <div class="col-sm-4 text-left">
+                            <small class="text-muted inline m-t-sm m-b-sm">显示1-3条，共3条</small>
+                        </div>
+                        <div class="col-sm-4 text-center">
+                            <ul class="pagination pagination-sm m-t-none m-b-none">
+                                <li><a href><i class="fa fa-chevron-left"></i></a></li>
+                                <li><a href>1</a></li>
+                                <li><a href>2</a></li>
+                                <li><a href>3</a></li>
+                                <li><a href>4</a></li>
+                                <li><a href>5</a></li>
+                                <li><a href><i class="fa fa-chevron-right"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+
+    </div>
+</div>
