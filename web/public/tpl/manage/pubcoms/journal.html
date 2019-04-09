@@ -1,3 +1,60 @@
 <div ng-controller="managePublicJournal_controller">
-    <h3>系统日志</h3>
+    <div class="wrapper-md bg-light lter b-b">
+        <form action="" class="form-inline ng-pristine ng-valid">
+            <div class="form-group">
+                <label for="caozuo">操作菜单：</label>
+                <input type="text" class="form-control" id="caozuo">
+                <label for="caozuo">用户名：</label>
+                <input type="text" class="form-control" id="caozuo">
+                <label for="caozuo">URI：</label>
+                <input type="text" class="form-control" id="caozuo">
+                <div class="form-group">
+                    <label for="exampleInputPassword2">日期范围：</label>
+                    <input ng-model="time.start"
+                           id="exampleInputPassword2"
+                           class="Wdate mainbg form-control  "
+                           onclick="WdatePicker({skin:'whyGreen',dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'2015-1-1 00:00:00',maxDate:'2025-12-31 23:59:59',onpicked: function(){$(this).trigger('change')}})"
+                           ng-required="true" onChange="">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword3">-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <input ng-model="time.end"
+                           id="exampleInputPassword3"
+                           class="Wdate mainbg form-control  "
+                           onclick="WdatePicker({skin:'whyGreen',dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'2015-1-1 00:00:00',maxDate:'2025-12-31 23:59:59',onpicked: function(){$(this).trigger('change')}})"
+                           ng-required="true" onChange="">
+                </div>
+                <button class="btn btn-primary" style="border-radius: 4px;">
+                    <span class="glyphicon glyphicon-search">查询</span>
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <div class="wrapper-md">
+        <table class="table table-striped m-b-none">
+            <thead>
+                <tr>
+                    <th>操作菜单</th>
+                    <th>操作用户</th>
+                    <th>所在公司</th>
+                    <th>URI</th>
+                    <th>提交方式</th>
+                    <th>操作者IP</th>
+                    <th>操作时间</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="x in jourData">
+                    <td>{{x.menu}}</td>
+                    <td>{{x.user}}</td>
+                    <td>{{x.company}}</td>
+                    <td>{{x.URI}}</td>
+                    <td>{{x.submitType}}</td>
+                    <td>{{x.userIp}}</td>
+                    <td>{{x.date}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

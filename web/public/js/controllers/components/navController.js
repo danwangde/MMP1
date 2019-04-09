@@ -27,12 +27,12 @@ app.controller('nav_controller', ['$scope', '$http', '$location', function ($sco
     const nav5=[
         {name:'部门管理',url:'1'},
         {name:'用户管理',url:'1'},
-        {name:'资料管理',url:'1'},
-        {name:'通知公告',url:'1'},
+        {name:'资料管理',url:'app.managePublicDataManage'},
+        {name:'通知公告',url:'app.managePublicNotice'},
         {name:'区域管理',url:'1'},
-        {name:'字典管理',url:'1'},
+        {name:'字典管理',state:'app.managePublicDicMag',url:'app.managePublicDicMag'},
         {name:'系统日志',state:'app.managePublicJournal',url:'app.managePublicJournal'},
-        {name:'备忘录',url:'app.managePublicMemo'},
+        {name:'备忘录',state:'app.managePublicMemo',url:'app.managePublicMemo'},
         {name:'病害库',state:'app.managePublicDiseases',url:'app.managePublicDiseases'},
         {name:'构件库',state:'app.managePublicComponents',url:'app.managePublicComponents'}
 

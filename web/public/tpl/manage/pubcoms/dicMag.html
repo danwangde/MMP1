@@ -1,0 +1,128 @@
+<div ng-controller="managePublicdic_controller">
+        <script type="text/ng-template" id="regularModal.html">
+            <div ng-include="'tpl/modal/addDicMag.html'"></div>
+        </script>
+    <div class="wrapper-md lter  bg-light">
+        <tabset class="tab-container">
+            <tab  id="tab1">
+                <tab-heading>
+                    字典列表&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button style="margin-left:30px;" class="btn btn-danger" ng-click="add(items)">添加键值</button>
+                </tab-heading>
+               
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <form action="" class="form-inline ng-invalid ng-pristine">
+                            <div class="form-group">
+                                <label for="type">类型：</label>
+                                <select name="" id="select" class="form-control" ng-model="selType">
+                                    <option>--类型--</option>
+                                    <option value="0">001</option>
+                                    <option value="1">002</option>
+                                    <option value="2">003</option>
+                                    <option value="3">004</option>
+                                    <option value="4">005</option>
+                                    <option value="5">006</option>
+                                    <option value="6">007</option>
+                                    <option value="7">008</option>
+                                    <option value="8">009</option>
+                                    <option value="9">010</option>
+                                    <option value="10">011</option>
+                                    <option value="11">012</option>
+                                    <option value="12">013</option>
+                                    <option value="13">014</option>
+                                </select>
+                                <!-- <input type="text" class="form-control"
+                                    style="position: relative;top:-34px;width: 80%;border-radius: 4px;"
+                                    ng-model="selType"> -->
+                            </div>
+                            <div class="form-group">
+                                <label for="describe">描述：</label>
+                                <input type="text" class="form-control" id="describe">
+                            </div>
+                            <button class="btn btn-primary">
+                                <span class="glyphicon glyphicon-search">查询</span>
+                            </button>
+                        </form>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-striped m-b-none">
+                            <thead>
+                                <tr>
+                                    <th>键值</th>
+                                    <th>标签</th>
+                                    <th>类型</th>
+                                    <th>描述</th>
+                                    <th>排序</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat=" x in faultData">
+                                    <td>{{x.keyvalue}}</td>
+                                    <td>{{x.label}}</td>
+                                    <td>{{x.type}}</td>
+                                    <td>{{x.describe}}</td>
+                                    <td>{{x.sort}}</td>
+                                    <td>
+                                        <a href="javascript:;" style="text-decoration:underline;color:blueviolet" ng-click="add(x)">修改</a>
+                                        <a href="javascript:;" style="text-decoration:underline;color:blueviolet" ng-click="removeRegular($index)">删除</a>
+                                        <a href="javascript:;"
+                                            style="text-decoration:underline;color:blueviolet" ng-click="add(items)">添加键值</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </tab>
+<!-- 
+            <tab id="tab2">
+                <tab-heading>
+                    字典添加
+                </tab-heading>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <form action="" class="col-sm-6 ng-invalid ng-pristine" role="form">
+                            <div class="form-group">
+                                <label for="type1">键值：</label>
+                                <input type="text" class="form-control" id="type1">
+                                <span style="color:red;">*</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="type2">标签:</label>
+                                <input type="text" class="form-control" id="type2">
+                                <span style="color:red;">*</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="type3">类型:</label>
+                                <input type="text" class="form-control" id="type3">
+                                <span style="color:red;">*</span>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="type4">描述:</label>
+                                <input type="text" class="form-control" id="type4">
+                                <span style="color:red;">*</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="type5">排序:</label>
+                                <input type="text" class="form-control" id="type5">
+                                <span style="color:red;">*</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="type6">备注:</label>
+                                <textarea name="" id="type6" cols="50" rows="2" style="max-width:100%;"></textarea>
+                            </div>
+                            <button class="btn btn-primary">保存</button>
+                            <button class="btn btn-default">返回</button>
+                        </form>
+                       
+                    </div>
+                </div>
+            </tab> -->
+        </tabset>
+
+    </div>
+</div>

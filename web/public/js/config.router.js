@@ -31,20 +31,21 @@ angular.module('app')
                     .state('app', {
                         abstract: true,
                         url: '/app',
-                        
+
                         templateUrl: 'tpl/common/app.html',
                         resolve: {
                             deps: ['uiLoad',
                                 function (uiLoad) {
-                                 
+
                                     return uiLoad.load(['js/controllers/components/appController.js']);
-                                }]
+                                }
+                            ]
                         }
                     })
                     .state('app_full', {
                         abstract: true,
                         url: '/app_full',
-                       
+
                         templateUrl: 'tpl/common/app_full.html'
                     })
                     .state('ceshi', {
@@ -54,55 +55,57 @@ angular.module('app')
                     // 登录页面
                     .state('signin', {
                         url: '/signin',
-                        
+
                         templateUrl: 'tpl/common/signin.html',
                         resolve: {
                             deps: ['uiLoad',
                                 function (uiLoad) {
-                                    
-                                    return uiLoad.load(['js/controllers/common/signin.js'
-                                    ]);
-                                }]
+
+                                    return uiLoad.load(['js/controllers/common/signin.js']);
+                                }
+                            ]
                         }
                     })
                     // 管理功能选择页面
                     .state('manage', {
                         url: '/manage/:ul',
-                     
+
                         templateUrl: 'tpl/common/manage.html',
                         resolve: {
                             deps: ['uiLoad',
                                 function (uiLoad) {
-                                 
+
                                     return uiLoad.load(['js/controllers/common/manage.js']);
-                                }]
+                                }
+                            ]
                         }
                     })
                     // 检测和养护功能选择页面
                     .state('office', {
                         url: '/office/:ul',
-                     
+
                         templateUrl: 'tpl/common/office.html',
                         resolve: {
                             deps: ['uiLoad',
                                 function (uiLoad) {
-                                    
+
                                     return uiLoad.load(['js/controllers/common/office.js']);
-                                }]
+                                }
+                            ]
                         }
                     })
                     // 管理 桥梁 首页
                     .state('app.manageBridgeIndex', {
                         url: '/manageBridgeIndex',
-                    
+
                         templateUrl: 'tpl/manage/bridge/index.html',
                         resolve: {
                             deps: ['uiLoad',
                                 function (uiLoad) {
-                                 
-                                    return uiLoad.load(['js/controllers/manage/bridge/index.js'
-                                    ]);
-                                }]
+
+                                    return uiLoad.load(['js/controllers/manage/bridge/index.js']);
+                                }
+                            ]
                         }
                     })
                     // 管理 桥梁 基本信息
@@ -112,7 +115,7 @@ angular.module('app')
                     })
                     .state('app.basic.manageBridgeInfo', {
                         url: '/manageBridgeInfo',
-                     
+
                         templateUrl: 'tpl/manage/bridge/bridge.html',
                         resolve: {
                             deps: ['$ocLazyLoad',
@@ -147,10 +150,10 @@ angular.module('app')
                         resolve: {
                             deps: ['uiLoad',
                                 function (uiLoad) {
-                                  
-                                    return uiLoad.load(['js/controllers/manage/bridge/statistics.js'
-                                    ]);
-                                }]
+
+                                    return uiLoad.load(['js/controllers/manage/bridge/statistics.js']);
+                                }
+                            ]
                         }
                     })
                     // 管理 桥梁 养护
@@ -165,9 +168,9 @@ angular.module('app')
                         resolve: {
                             deps: ['uiLoad',
                                 function (uiLoad) {
-                                    return uiLoad.load(['js/controllers/manage/bridge/task.js'
-                                    ]);
-                                }]
+                                    return uiLoad.load(['js/controllers/manage/bridge/task.js']);
+                                }
+                            ]
                         }
                     })
                     .state('app.maintain.manageBridgePatrol', {
@@ -176,9 +179,9 @@ angular.module('app')
                         resolve: {
                             deps: ['uiLoad',
                                 function (uiLoad) {
-                                    return uiLoad.load(['js/controllers/manage/bridge/patrol.js'
-                                    ]);
-                                }]
+                                    return uiLoad.load(['js/controllers/manage/bridge/patrol.js']);
+                                }
+                            ]
                         }
                     })
                     .state('app.maintain.manageBridgeOrder', {
@@ -187,9 +190,9 @@ angular.module('app')
                         resolve: {
                             deps: ['uiLoad',
                                 function (uiLoad) {
-                                    return uiLoad.load(['js/controllers/manage/bridge/order.js'
-                                    ]);
-                                }]
+                                    return uiLoad.load(['js/controllers/manage/bridge/order.js']);
+                                }
+                            ]
                         }
                     })
                     .state('app.maintain.manageBridgeScheme', {
@@ -198,9 +201,9 @@ angular.module('app')
                         resolve: {
                             deps: ['uiLoad',
                                 function (uiLoad) {
-                                    return uiLoad.load(['js/controllers/manage/bridge/scheme.js'
-                                    ]);
-                                }]
+                                    return uiLoad.load(['js/controllers/manage/bridge/scheme.js']);
+                                }
+                            ]
                         }
                     })
                     .state('app.maintain.manageBridgeCheck', {
@@ -209,9 +212,9 @@ angular.module('app')
                         resolve: {
                             deps: ['uiLoad',
                                 function (uiLoad) {
-                                    return uiLoad.load(['js/controllers/manage/bridge/check.js'
-                                    ]);
-                                }]
+                                    return uiLoad.load(['js/controllers/manage/bridge/check.js']);
+                                }
+                            ]
                         }
                     })
                     .state('app.maintain.manageBridgeCost', {
@@ -220,9 +223,9 @@ angular.module('app')
                         resolve: {
                             deps: ['uiLoad',
                                 function (uiLoad) {
-                                    return uiLoad.load(['js/controllers/manage/bridge/cost.js'
-                                    ]);
-                                }]
+                                    return uiLoad.load(['js/controllers/manage/bridge/cost.js']);
+                                }
+                            ]
                         }
                     })
                     // 管理 桥梁 检测
@@ -236,9 +239,9 @@ angular.module('app')
                         resolve: {
                             deps: ['uiLoad',
                                 function (uiLoad) {
-                                    return uiLoad.load(['js/controllers/manage/bridge/plan.js'
-                                    ]);
-                                }]
+                                    return uiLoad.load(['js/controllers/manage/bridge/plan.js']);
+                                }
+                            ]
                         }
                     })
                     .state('app.echeck.manageBridgeRegular', {
@@ -247,9 +250,9 @@ angular.module('app')
                         resolve: {
                             deps: ['uiLoad',
                                 function (uiLoad) {
-                                    return uiLoad.load(['js/controllers/manage/bridge/regular.js'
-                                    ]);
-                                }]
+                                    return uiLoad.load(['js/controllers/manage/bridge/regular.js']);
+                                }
+                            ]
                         }
                     })
                     .state('app.echeck.manageBridgeStructural', {
@@ -258,9 +261,9 @@ angular.module('app')
                         resolve: {
                             deps: ['uiLoad',
                                 function (uiLoad) {
-                                    return uiLoad.load(['js/controllers/manage/bridge/structural.js'
-                                    ]);
-                                }]
+                                    return uiLoad.load(['js/controllers/manage/bridge/structural.js']);
+                                }
+                            ]
                         }
                     })
                     .state('app.echeck.manageBridgeLoadtest', {
@@ -269,9 +272,9 @@ angular.module('app')
                         resolve: {
                             deps: ['uiLoad',
                                 function (uiLoad) {
-                                    return uiLoad.load(['js/controllers/manage/bridge/loadtest.js'
-                                    ]);
-                                }]
+                                    return uiLoad.load(['js/controllers/manage/bridge/loadtest.js']);
+                                }
+                            ]
                         }
                     })
                     // 管理 桥梁 技术评估
@@ -279,69 +282,72 @@ angular.module('app')
                         url: '/assessment',
                         template: '<div ui-view class="fade-in-up"></div>'
                     })
-                    .state('app.assessment.bridgeAssessment',{
-                        url:'/bridgeAssessment',
-                        templateUrl:'tpl/manage/bridge/bridgeAssessment.html',
-                        resolve:{
-                            deps:['uiLoad',
+                    .state('app.assessment.bridgeAssessment', {
+                        url: '/bridgeAssessment',
+                        templateUrl: 'tpl/manage/bridge/bridgeAssessment.html',
+                        resolve: {
+                            deps: ['uiLoad',
                                 function (uiLoad) {
                                     return uiLoad.load(['js/controllers/manage/bridge/bridgeAssessment.js'])
-                                }]
+                                }
+                            ]
                         }
                     })
-                    .state('app.assessment.passageAssessment',{
-                        url:'/passageAssessment',
-                        templateUrl:'tpl/manage/bridge/passageAssessment.html',
-                        resolve:{
-                            deps:['uiLoad',
+                    .state('app.assessment.passageAssessment', {
+                        url: '/passageAssessment',
+                        templateUrl: 'tpl/manage/bridge/passageAssessment.html',
+                        resolve: {
+                            deps: ['uiLoad',
                                 function (uiLoad) {
                                     return uiLoad.load(['js/controllers/manage/bridge/passageAssessment.js'])
-                                }]
+                                }
+                            ]
                         }
                     })
 
                     // 桥梁 GIS地图
-                    .state('app.manageBridgeMap',{
-                        url:'/manageBridgeMap',
-                        templateUrl:'tpl/manage/bridge/GISMap.html',
-                        resolve:{
-                            deps:['uiLoad',
+                    .state('app.manageBridgeMap', {
+                        url: '/manageBridgeMap',
+                        templateUrl: 'tpl/manage/bridge/GISMap.html',
+                        resolve: {
+                            deps: ['uiLoad',
                                 function (uiLoad) {
                                     return uiLoad.load(['js/controllers/manage/bridge/GISMap.js'])
-                                }]
+                                }
+                            ]
                         }
                     })
                     //管理 桥梁 病害库
-                    .state('app.manageBridgeDisBank',{
-                        url:'manegeBridgeDisease',
-                        templateUrl:'tpl/manage/bridge/disBank.html',
-                        resolve:{
-                            deps:'uiLoad',
-                            function(uiLoad){
+                    .state('app.manageBridgeDisBank', {
+                        url: 'manegeBridgeDisease',
+                        templateUrl: 'tpl/manage/bridge/disBank.html',
+                        resolve: {
+                            deps: 'uiLoad',
+                            function (uiLoad) {
                                 return uiLoad.load(['js/controllers/manage/bridge/disBank.js'])
                             }
                         }
                     })
 
                     //管理 桥梁 单价库
-                    .state('app.manageBridgePrice',{
-                        url:'manageBridgePrice',
-                        templateUrl:'tpl/manage/bridge/componentPrice.html',
-                        resolve:{
-                            deps:'uiLoad',
-                            function(uiLoad){
+                    .state('app.manageBridgePrice', {
+                        url: 'manageBridgePrice',
+                        templateUrl: 'tpl/manage/bridge/componentPrice.html',
+                        resolve: {
+                            deps: 'uiLoad',
+                            function (uiLoad) {
                                 return uiLoad.load(['js/controllers/manage/bridge/componentPrice.js'])
                             }
                         }
                     })
 
                     //管理 桥梁 数据导出
-                    .state('app.manageDataOut',{
-                        url:'manageDataOut',
-                        templateUrl:'tpl/manage/bridge/dataOut.html',
-                        resolve:{
-                            deps:'uiLoad',
-                            function(uiLoad){
+                    .state('app.manageDataOut', {
+                        url: 'manageDataOut',
+                        templateUrl: 'tpl/manage/bridge/dataOut.html',
+                        resolve: {
+                            deps: 'uiLoad',
+                            function (uiLoad) {
                                 return uiLoad.load(['js/controllers/manage/bridge/dataOut.js'])
                             }
                         }
@@ -350,75 +356,118 @@ angular.module('app')
                     // 管理 公共 管理
                     .state('app.managePublicOffice', {
                         url: '/managePublicOffice',
-                    
+
                         templateUrl: 'tpl/manage/pubcoms/office.html',
                         resolve: {
                             deps: ['uiLoad',
                                 function (uiLoad) {
-                                
-                                    return uiLoad.load(['js/controllers/manage/pubcoms/office.js'
-                                    ]);
-                                }]
+
+                                    return uiLoad.load(['js/controllers/manage/pubcoms/office.js']);
+                                }
+                            ]
                         }
                     })
-                     // 管理 公共 系统日志
-                     .state('app.managePublicJournal', {
+
+                    // 管理 公共 通知公告
+                    .state('app.managePublicNotice', {
+                        url: '/managePublicNotice',
+
+                        templateUrl: 'tpl/manage/pubcoms/notice.html',
+                        resolve: {
+                            deps: ['uiLoad',
+                                function (uiLoad) {
+
+                                    return uiLoad.load(['js/controllers/manage/pubcoms/notice.js']);
+                                }
+                            ]
+                        }
+                    })
+                      // 管理 公共 资料管理
+                      .state('app.managePublicDataManage', {
+                        url: '/managePublicDataManage',
+
+                        templateUrl: 'tpl/manage/pubcoms/dataManage.html',
+                        resolve: {
+                            deps: ['uiLoad',
+                                function (uiLoad) {
+
+                                    return uiLoad.load(['js/controllers/manage/pubcoms/dataManage.js']);
+                                }
+                            ]
+                        }
+                    })
+                    // 管理 公共 字典管理
+                    .state('app.managePublicDicMag', {
+                        url: '/managePublicDicMag',
+
+                        templateUrl: 'tpl/manage/pubcoms/dicMag.html',
+                        resolve: {
+                            deps: ['uiLoad',
+                                function (uiLoad) {
+
+                                    return uiLoad.load(['js/controllers/manage/pubcoms/dicMag.js']);
+                                }
+                            ]
+                        }
+                    })
+                    // 管理 公共 系统日志
+                    .state('app.managePublicJournal', {
                         url: '/managePublicJournal',
-                    
+
                         templateUrl: 'tpl/manage/pubcoms/journal.html',
                         resolve: {
                             deps: ['uiLoad',
                                 function (uiLoad) {
-                                
-                                    return uiLoad.load(['js/controllers/manage/pubcoms/journal.js'
-                                    ]);
-                                }]
+
+                                    return uiLoad.load(['js/controllers/manage/pubcoms/journal.js']);
+                                }
+                            ]
                         }
                     })
-                     // 管理 公共 备忘录
-                     .state('app.managePublicMemo', {
+                    // 管理 公共 备忘录
+                    .state('app.managePublicMemo', {
                         url: '/managePublicMemo',
-                    
+
                         templateUrl: 'tpl/manage/pubcoms/memo.html',
                         resolve: {
                             deps: ['uiLoad',
                                 function (uiLoad) {
-                                
-                                    return uiLoad.load(['js/controllers/manage/pubcoms/memo.js'
-                                    ]);
-                                }]
+
+                                    return uiLoad.load(['js/controllers/manage/pubcoms/memo.js']);
+                                }
+                            ]
                         }
                     })
 
 
-                       // 管理 公共 病害库
-                       .state('app.managePublicDiseases', {
+                    // 管理 公共 病害库
+                    .state('app.managePublicDiseases', {
                         url: '/managePublicDiseases',
-                    
+
                         templateUrl: 'tpl/manage/pubcoms/diseases.html',
                         resolve: {
                             deps: ['uiLoad',
                                 function (uiLoad) {
-                                
-                                    return uiLoad.load(['js/controllers/manage/pubcoms/diseases.js'
-                                    ]);
-                                }]
+
+                                    return uiLoad.load(['js/controllers/manage/pubcoms/diseases.js']);
+                                }
+                            ]
                         }
                     })
 
 
-                     // 管理 公共 构件库
-                     .state('app.managePublicComponents', {
+                    // 管理 公共 构件库
+                    .state('app.managePublicComponents', {
                         url: '/managePublicComponents',
-                    
+
                         templateUrl: 'tpl/manage/pubcoms/components.html',
                         resolve: {
                             deps: ['uiLoad',
                                 function (uiLoad) {
-                                
-                                    return uiLoad.load(['js/controllers/manage/pubcoms/components.js'
-                                    ]);
-                                }]
+
+                                    return uiLoad.load(['js/controllers/manage/pubcoms/components.js']);
+                                }
+                            ]
                         }
                     })
 
@@ -426,152 +475,152 @@ angular.module('app')
                     // 检测 桥梁 待办
                     .state('app.echeckBridgeBacklog', {
                         url: '/echeckBridgeBacklog',
-                   
+
                         templateUrl: 'tpl/echeck/ewaitTask.html',
                         resolve: {
                             deps: ['uiLoad',
                                 function (uiLoad) {
-                                  
-                                    return uiLoad.load(['js/controllers/echeck/ewaitTask.js'
-                                    ]);
-                                }]
+
+                                    return uiLoad.load(['js/controllers/echeck/ewaitTask.js']);
+                                }
+                            ]
                         }
                     })
-                    
+
                     // 检测 桥梁 桥梁信息
                     .state('app.echeckBridgeInfo', {
                         url: '/echeckBridgeInfo',
-                   
+
                         templateUrl: 'tpl/echeck/bridgeInfo.html',
                         resolve: {
                             deps: ['uiLoad',
                                 function (uiLoad) {
-                                  
-                                    return uiLoad.load(['js/controllers/echeck/bridgeInfo.js'
-                                    ]);
-                                }]
+
+                                    return uiLoad.load(['js/controllers/echeck/bridgeInfo.js']);
+                                }
+                            ]
                         }
                     })
-                      
+
                     // 检测 桥梁 人行通道信息
                     .state('app.echeckPassageInfo', {
                         url: '/echeckPassageInfo',
-                   
+
                         templateUrl: 'tpl/echeck/passageInfo.html',
                         resolve: {
                             deps: ['uiLoad',
                                 function (uiLoad) {
-                                  
-                                    return uiLoad.load(['js/controllers/echeck/passageInfo.js'
-                                    ]);
-                                }]
+
+                                    return uiLoad.load(['js/controllers/echeck/passageInfo.js']);
+                                }
+                            ]
                         }
                     })
-                      // 检测 桥梁 常规检测
-                      .state('app.echeckBridgeRegular', {
+                    // 检测 桥梁 常规检测
+                    .state('app.echeckBridgeRegular', {
                         url: '/echeckBridgeRegular',
-                   
+
                         templateUrl: 'tpl/echeck/regular.html',
                         resolve: {
                             deps: ['uiLoad',
                                 function (uiLoad) {
-                                  
-                                    return uiLoad.load(['js/controllers/echeck/regular.js'    
-                                    ]);
-                                }]
+
+                                    return uiLoad.load(['js/controllers/echeck/regular.js']);
+                                }
+                            ]
                         }
                     })
 
-                      // 检测 桥梁 结构性能检测
-                      .state('app.echeckBridgeStructural', {
+                    // 检测 桥梁 结构性能检测
+                    .state('app.echeckBridgeStructural', {
                         url: '/echeckBridgeStructural',
-                   
+
                         templateUrl: 'tpl/echeck/structural.html',
                         resolve: {
                             deps: ['uiLoad',
                                 function (uiLoad) {
-                                  
-                                    return uiLoad.load(['js/controllers/echeck/structural.js'    
-                                    ]);
-                                }]
+
+                                    return uiLoad.load(['js/controllers/echeck/structural.js']);
+                                }
+                            ]
                         }
                     })
 
-                     // 检测 桥梁 荷载试验  
-                     .state('app.echeckBridgeLoadTest', {
+                    // 检测 桥梁 荷载试验  
+                    .state('app.echeckBridgeLoadTest', {
                         url: '/echeckBridgeLoadTest',
-                   
+
                         templateUrl: 'tpl/echeck/loadtest.html',
                         resolve: {
                             deps: ['uiLoad',
                                 function (uiLoad) {
-                                  
-                                    return uiLoad.load(['js/controllers/echeck/loadtest.js'    
-                                    ]);
-                                }]
+
+                                    return uiLoad.load(['js/controllers/echeck/loadtest.js']);
+                                }
+                            ]
                         }
                     })
 
-                      // 检测 桥梁 GIS地图  
-                      .state('app.echeckBridgeMap', {
+                    // 检测 桥梁 GIS地图  
+                    .state('app.echeckBridgeMap', {
                         url: '/echeckBridgeMap',
-                   
+
                         templateUrl: 'tpl/echeck/map.html',
                         resolve: {
                             deps: ['uiLoad',
                                 function (uiLoad) {
-                                  
-                                    return uiLoad.load(['js/controllers/echeck/map.js'    
-                                    ]);
-                                }]
+
+                                    return uiLoad.load(['js/controllers/echeck/map.js']);
+                                }
+                            ]
                         }
                     })
-                      // 检测 桥梁 通知公告
-                      .state('app.echeckNotice', {
+                    // 检测 桥梁 通知公告
+                    .state('app.echeckNotice', {
                         url: '/echeckNotice',
-                   
+
                         templateUrl: 'tpl/echeck/notice.html',
                         resolve: {
                             deps: ['uiLoad',
                                 function (uiLoad) {
-                                  
-                                    return uiLoad.load(['js/controllers/echeck/notice.js'
-                                    ]);
-                                }]
+
+                                    return uiLoad.load(['js/controllers/echeck/notice.js']);
+                                }
+                            ]
                         }
                     })
-                       // 检测 桥梁 备忘录
-                       .state('app.echeckMemo', {
+                    // 检测 桥梁 备忘录
+                    .state('app.echeckMemo', {
                         url: '/echeckMemo',
-                   
+
                         templateUrl: 'tpl/echeck/memo.html',
                         resolve: {
                             deps: ['uiLoad',
                                 function (uiLoad) {
-                                  
-                                    return uiLoad.load(['js/controllers/echeck/memo.js'
-                                    ]);
-                                }]
+
+                                    return uiLoad.load(['js/controllers/echeck/memo.js']);
+                                }
+                            ]
                         }
                     })
                     // 养护 桥梁 待办
                     .state('app.maintainBridgeBacklog', {
                         url: '/maintainBridgeBacklog',
-                        
+
                         templateUrl: 'tpl/maintain/mwaitTask.html',
                         resolve: {
                             deps: ['uiLoad',
                                 function (uiLoad) {
-                                  
-                                    return uiLoad.load(['js/controllers/maintain/mwaitTask.js'
-                                    ]);
-                                }]
+
+                                    return uiLoad.load(['js/controllers/maintain/mwaitTask.js']);
+                                }
+                            ]
                         }
                     })
 
                     .state('app.404', {
                         url: '/404',
-                 
+
                         templateUrl: 'tpl/common/404.html'
                     });
 
