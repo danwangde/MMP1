@@ -1725,3 +1725,6 @@ cursorPoin{
 #head span,#body span,#body a{
     padding:8px 14px;
 }
+.glyphicon:empty{
+    width:1em;
+}

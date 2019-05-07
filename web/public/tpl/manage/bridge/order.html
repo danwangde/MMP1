@@ -9,29 +9,30 @@
         <form class="form-inline ng-pristine ng-valid" role="form">
             <div class="form-group">
                 <label for="exampleInputEmail2"> 桥梁名称：</label>
-                <input type="email" class="form-control" id="exampleInputEmail2" placeholder="">
+                <input type="text" class="form-control" id="exampleInputEmail2" placeholder="" ng-model="name">
             </div>
             <div class="form-group">
-                <label for="exampleInputPassword2">上报时间：</label>
-                <input type="text" class="form-control" id="exampleInputPassword2" placeholder="">
+                <label for="exampleInputPassword1">上报时间：</label>
+                <input type="text" class="form-control" id="exampleInputPassword1" placeholder="" ng-model="time">
             </div>
             <div class="form-group">
-                <label> 病害名称：</label>
-                <input type="text" class="form-control" id="exampleInputPassword2" placeholder="">
+                <label for="exampleInputPassword2"> 病害名称：</label>
+                <input type="text" class="form-control" id="exampleInputPassword2" placeholder="" ng-model="disease">
             </div>
             <div class="form-group">
-                <label> 巡查公司：</label>
-                <input type="text" class="form-control" id="exampleInputPassword2" placeholder="">
+                <label for="exampleInputPassword3"> 巡查公司：</label>
+                <input type="text" class="form-control" id="exampleInputPassword3" placeholder="" ng-model="company">
             </div>
             <div class="form-group">
                 <label> 工单状态：</label>
-                <select name="" id="" class="form-control">
-                    <option value="">未处理</option>
-                    <option value="">已派发</option>
-                    <option value="">不派发</option>
+                <select name="" id="" class="form-control" ng-model="status">
+                    <option value="" hidden>--请选择--</option>
+                    <option value="0">未处理</option>
+                    <option value="1">未派单</option>
+                    <option value="2">已派单</option>
                 </select>
             </div>
-            <button class="btn btn-success">查询</button>
+            <button class="btn btn-success" ng-click="search()">查询</button>
         </form>
 
     </div>
@@ -56,7 +57,7 @@
                             上报时间
                         </th>
                         <th style="width:12%">
-                            巡查单位
+                            维护单位
                         </th>
                         <th style="width:12%">
                             工单状态
@@ -66,12 +67,12 @@
                     <tbody>
 
                     <tr ng-repeat="item in orderInfo" ng-click="clickOrder($index)" ng-class='{focus: $index==focus}'>
-                        <td>{{item.id}}</td>
-                        <td>{{item.bridgeName}}</td>
-                        <td>{{item.diseaseName}}</td>
-                        <td>{{item.time}}</td>
-                        <td>{{item.maintainDept}}</td>
-                        <td> <button class="btn btn-dark">{{item.state==0?'未处理':item.state==1?'未派单':'已派单'}}</button></td>
+                        <td>{{item.OrderNum}}</td>
+                        <td>{{item.BridgeName}}</td>
+                        <td>{{item.DiseaseName}}</td>
+                        <td>{{item.ReportTime}}</td>
+                        <td>{{item.MaintainDept}}</td>
+                        <td> <button class="btn btn-dark">{{item.State==0?'未处理':item.State==1?'未派单':'已派单'}}</button></td>
                     </tr>
                 </table>
                 <footer class="panel-footer">

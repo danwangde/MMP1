@@ -173,6 +173,18 @@ angular.module('app')
                             ]
                         }
                     })
+
+                    .state('app.maintain.manageBridgePatrolAssess', {
+                        url: '/manageBridgePatrolAssess',
+                        templateUrl: 'tpl/manage/bridge/patrolAssess.html',
+                        resolve: {
+                            deps: ['uiLoad',
+                                function (uiLoad) {
+                                    return uiLoad.load(['js/controllers/manage/bridge/patrolAssess.js']);
+                                }
+                            ]
+                        }
+                    })
                     .state('app.maintain.manageBridgePatrol', {
                         url: '/manageBridgePatrol',
                         templateUrl: 'tpl/manage/bridge/patrol.html',

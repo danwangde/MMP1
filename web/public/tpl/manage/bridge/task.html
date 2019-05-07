@@ -6,21 +6,28 @@
         <form class="form-inline ng-pristine ng-valid" role="form">
             <div class="form-group">
                 <label for="exampleInputEmail2"> 桥梁名称：</label>
-                <input type="email" class="form-control" id="exampleInputEmail2" placeholder="">
+                <input type="text" class="form-control" id="exampleInputEmail2" placeholder="" ng-model="name">
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword2">桥梁编号：</label>
-                <input type="password" class="form-control" id="exampleInputPassword2" placeholder="">
+                <input type="text" class="form-control" id="exampleInputPassword2" placeholder="" ng-model="key">
             </div>
             <div class="form-group">
                 <label>桥梁类型：</label>
-                <select class="form-control  inline">
-                    <option value="0">梁桥</option>
-                    <option value="1">桁架桥</option>
+                <select class="form-control  inline" ng-model="type">
+                    <option value="" hidden>--请选择--</option>
+                    <option value="梁桥">梁桥</option>
+                    <option value="桁架桥">桁架桥</option>
+                    <option value="悬臂+挂梁">悬臂+挂梁</option>
+                    <option value="圬工拱桥（有拱上结构）">圬工拱桥（有拱上结构）</option>
+                    <option value="圬工拱桥（无拱上结构）">圬工拱桥（有拱上结构）</option>
+                    <option value="钢结构拱桥">钢结构拱桥</option>
+                    <option value="人行天桥（梁桥）">人行天桥（梁桥）</option>
+                    <option value="人行天桥（钢桁架桥）">人行天桥（钢桁架桥）</option>
 
                 </select>
             </div>
-            <button class="btn btn-success">查询</button>
+            <button class="btn btn-success" ng-click="search()">查询</button>
         </form>
 
     </div>
@@ -45,7 +52,7 @@
                         周期
                     </th>
                     <th style="width:12%">
-                        巡查次数
+                        计划巡查次数
                     </th>
                     <th style="width:12%">
                         巡查单位
@@ -62,10 +69,10 @@
                     <td>{{item.BridgeName}}</td>
                     <td>{{item.BridgeType}}</td>
                     <td>{{item.CuringGrade}}</td>
-                    <td>{{item.time}}</td>
-                    <td>{{item.num}}</td>
-                    <td>{{item.maintainDept}}</td>
-                    <td ng-click="update($index)"><a href=""  class="redLook"><i class="glyphicon glyphicon-hand-up"></i></a></td>
+                    <td>{{item.Cycle}}</td>
+                    <td>{{item.Frequency}}</td>
+                    <td>{{item.PatrolUnit}}</td>
+                    <td ng-click="update(item)"><a href=""  style="color:#337ab7;" class="redLook"><i class="glyphicon glyphicon-edit"></i></a></td>
                 </tr>
 
                 </tbody>

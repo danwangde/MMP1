@@ -62,15 +62,15 @@
                     </thead>
                     <tbody>
     
-                        <tr ng-repeat=" item in passagewayInfo" ng-class='{focus: $index==focus}' ng-click="clickPassageway ($index)">
-                            <td>{{item.ID}}</td>
+                        <tr ng-repeat=" item in passagewayInfo">
+                            <td>{{item.PassagewayNum}}</td>
                             <td>{{item.PassagewayName}}</td>
                             <td>{{item.Length}}</td>
                             <td>{{item.Width}}</td>
                             <td>{{item.High}}</td>
                             <td>{{item.ManageUnit}}</td>
-                            <td  ng-click="clickBridge ($index)"><a href="" class="redLook"><i class="glyphicon glyphicon-hand-up"></i></a></td>
-                            <td><a href=""  class="greenLook"><i class="glyphicon glyphicon-remove-sign"></i></a></td>
+                            <td  ng-click="clickPassageway ($index)"><a href="" class="redLook"><i class="glyphicon glyphicon-hand-up"></i></a></td>
+                            <td ng-click="remove($index)"><a href="" class="greenLook"><i class="glyphicon glyphicon-remove-sign"></i></a></td>
                         </tr>
     
                     </tbody>

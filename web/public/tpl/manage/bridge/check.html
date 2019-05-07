@@ -64,13 +64,13 @@
                     <tbody>
 
                     <tr ng-repeat=" item in checkInfo " ng-click="openCheck($index)">
-                        <td>{{item.ID}}</td>
-                        <td>{{item.diseaseName}}</td>
+                        <td>{{item.OrderNum}}</td>
+                        <td>{{item.DiseaseName}}</td>
                         <td>{{item.BridgeName}}</td>
-                        <td>{{item.maintainDept}}</td>
-                        <td>{{item.name}}</td>
-                        <td>{{item.site}}</td>
-                        <td>{{item.sum}}元</td>
+                        <td>{{item.MaintainUnit}}</td>
+                        <td>{{item.ProLeader}}</td>
+                        <td>{{item.Address}}</td>
+                        <td>{{item.MaintainAmount}}元</td>
                         <td> <button class="btn btn-dark">{{item.state==0?'未验收':'已验收'}}</button></td>
                     </tr>
                     </tbody>

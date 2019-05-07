@@ -3,7 +3,7 @@
         <div class="navpage-content">
             <ul class="nav">
                 <li  ng-repeat="li in navList"  ng-class="{active:$state.includes(li.state)}"   >
-                    <a ui-sref={{li.url}} class="auto">
+                    <a ui-sref={{li.state}} class="auto">
                         <span class="pull-right text-muted" ng-show="li.url == ''">
                              <i class="fa fa-fw fa-angle-right text"></i>
                              <i class="fa fa-fw fa-angle-down text-active"></i>
@@ -12,7 +12,7 @@
                     </a>
                     <ul class="nav nav-sub dk">
                         <li ui-sref-active="active" ng-repeat="child in li.children">
-                            <a ui-sref={{child.url}}>
+                            <a ui-sref={{child.state}}>
                                 {{child.name}}
                             </a>
                         </li>

@@ -32,7 +32,7 @@
 				smallLoading:     		false,                  								//显示小的loading
 
 				// 这是图片的样式   (pic)
-				imgSrc: 				'http://www.daiwei.org/index/images/logo/dw.png',    	//默认的图片地址
+				imgSrc: 				'http://www.js.daiwei.org/index/images/logo/dw.png',    	//默认的图片地址
 				imgDivWidth: 			80,           											//imgDiv的width
 				imgDivHeight: 			80,           											//imgDiv的Height
 

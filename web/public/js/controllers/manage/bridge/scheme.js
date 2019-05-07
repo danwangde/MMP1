@@ -1,41 +1,31 @@
 'use strict';
 
-app.controller('manageBridgeScheme_controller', ['$scope', '$http', '$modal', '$log', function ($scope, $http, $modal, $log) {
-    $scope.orderInfo=[
-        {
-            id:'19032200003',
-            bridgeName:'燕山立交桥',
-            diseaseName:'沥青路面坑槽',
-            time:'2019-03-22 08:15:00',
-            scheme:'山东省市政基础设施养护管理平台详细设计说明书 (1).pdf',
-            state:0,
-            address:'卧虎山路(与沂山路交汇西50米路北)',
-            description:'12319单子',
-            name:'高明欣'
-        },
-        {
-            id:'19032200004',
-            bridgeName:'燕山立交桥',
-            diseaseName:'沥青路面坑槽',
-            time:'2019-03-22 08:15:00',
-            scheme:'山东省市政基础设施养护管理平台详细设计说明书 (1).pdf',
-            state:1,
-            address:'卧虎山路(与沂山路交汇西50米路北)',
-            description:'12319单子',
-            name:'高明欣'
-        },
-        {
-            id:'19032200005',
-            bridgeName:'燕山立交桥',
-            diseaseName:'沥青路面坑槽',
-            time:'2019-03-22 08:15:00',
-            scheme:'山东省市政基础设施养护管理平台详细设计说明书 (1).pdf',
-            state:2,
-            address:'卧虎山路(与沂山路交汇西50米路北)',
-            description:'12319单子',
-            name:'高明欣'
+app.controller('manageBridgeScheme_controller', ['$scope', '$http','$filter','$q','$timeout', '$modal', '$log', function ($scope, $http,$filter,$q,$timeout, $modal, $log) {
+     $scope.search = function () {
+         $scope.schemeInfo = $filter('scheme')($scope.schemeInfo,$scope.num,$scope.name,$scope.submit,$scope.selState);
+     };
+
+    async function selData(){
+        let url = '/maintain/scheme/select';
+        try{
+            let res = await $http.get(url);
+           $scope.$apply(function () {
+               $scope.schemeInfo = res.data;
+           })
+        }catch(e){
+            console.log('get data err'+e);
         }
-    ];
+    }
+    selData();
+   $scope.update = async function () {
+       try{
+           console.log($scope.path);
+           let res = await $http.post('/maintain/scheme/update', {file:'1556180171308-AngularJS权威教程 .pdf'});
+           console.log(res);
+       }catch(e){
+           console.log('get data err'+e);
+       }
+   };
     $scope.clickOrder = function (index) {
         $scope.focus = index;
         var modalInstance = $modal.open({
@@ -56,4 +46,35 @@ app.controller('manageBridgeScheme_controller', ['$scope', '$http', '$modal', '$
             $log.info('Modal dismissed at: ' + new Date());
         });
     };
-}])
+    /*$scope.del =async function(item){
+        $timeout(async ()=>{
+
+            try{
+                let res = await  $http.post('/maintain/scheme/del', item);
+                console.log(item);
+            }catch (e) {
+                console.log('err'+e)
+            }
+        },5000)
+
+    };*/
+
+    $scope.btn =async function (item,id){
+        console.log(id);
+       let fd = new FormData();
+       let upload_file = document.getElementById(id).files[0];
+       console.log(upload_file);
+       fd.append('file',upload_file);
+       try{
+            let response =await  $http.post('/maintain/scheme/ce',fd,{ headers: {'Content-Type':undefined}, transformRequest: angular.identity});
+            item.file = response.data.filename;
+
+           let res = await $http.post('/maintain/scheme/update', item);
+           await selData();
+
+       }catch(e){
+           console.log('err'+e);
+       }
+    };
+}]);
+

@@ -5,25 +5,26 @@
         <form class="form-inline ng-pristine ng-valid" role="form">
             <div class="form-group">
                 <label for="exampleInputPassword2">工单编号：</label>
-                <input type="text" class="form-control" id="exampleInputPassword2" placeholder="">
+                <input type="text" class="form-control" id="exampleInputPassword2" placeholder="" ng-model="num">
             </div>
             <div class="form-group">
-                <label for="exampleInputEmail2"> 桥梁名称：</label>
-                <input type="email" class="form-control" id="exampleInputEmail2" placeholder="">
+                <label for="exampleInputEmail1"> 桥梁名称：</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="" ng-model="name">
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail2"> 提交时间：</label>
-                <input type="email" class="form-control" id="exampleInputEmail2" placeholder="">
+                <input type="text" class="form-control" id="exampleInputEmail2" placeholder="" ng-model="submit">
             </div>
             <div class="form-group">
                 <label> 审核状态：</label>
-                <select name="" id="" class="form-control">
-                    <option value="">未审核</option>
-                    <option value="">已通过</option>
-                    <option value="">不通过</option>
+                <select name="" id="" class="form-control" ng-model="selState">
+                    <option value="" hidden>--请选择--</option>
+                    <option value="0">未审核</option>
+                    <option value="1">已通过</option>
+                    <option value="2">不通过</option>
                 </select>
             </div>
-            <button class="btn btn-success">查询</button>
+            <button class="btn btn-success" ng-click="search()">查询</button>
         </form>
 
     </div>
@@ -46,8 +47,11 @@
                             提交时间
                         </th>
                         <th style="width:12%">
-                            养护方案
+                            养护方案选择
                         </th>
+                        <th>上传</th>
+                        <th>养护方案</th>
+
                         <th style="width:12%">
                             审核状态
                         </th>
@@ -55,12 +59,15 @@
                     </thead>
                     <tbody>
 
-                    <tr ng-repeat="item in orderInfo" >
-                        <td>{{item.id}}</td>
-                        <td>{{item.bridgeName}}</td>
-                        <td>{{item.diseaseName}}</td>
-                        <td>{{item.time}}</td>
-                        <td><a href="">{{item.scheme}}</a></td>
+
+                    <tr ng-repeat="item in schemeInfo" >
+                        <td>{{item.OrderNum}}</td>
+                        <td>{{item.BridgeName}}</td>
+                        <td>{{item.DiseaseName}}</td>
+                        <td>{{item.SubmitDate}}</td>
+                        <td><input type="file" name="file" id="file{{item.SchemeID}}"  ></td><!--<a href="">{{item.MaintenancePlan}}</a>-->
+                        <td><button class="btn btn-success" ng-click="btn(item,'file{{item.SchemeID}}')">提交</button></td>
+                        <td><a href="{{item.file}}" download style="text-decoration: underline;color:blue;" <!--ng-click="del(item)-->">{{item.file}}</a></td>
                         <td> <button class="btn btn-dark">{{item.state==0?'未审核':item.state==1?'已通过':'不通过'}}</button></td>
                     </tr>
 

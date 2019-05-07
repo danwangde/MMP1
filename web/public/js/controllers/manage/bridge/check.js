@@ -3,7 +3,7 @@ app.controller('ModalInstanceCtrl', ['$scope', '$modalInstance', 'items', functi
 
 }]);
 app.controller('manageBridgeCheck_controller', ['$scope', '$http', '$modal', '$log', function ($scope, $http, $modal, $log) {
-    $scope.checkInfo = [{
+    /*$scope.checkInfo = [{
         ID: '1',
         diseaseName: '人行道平板碎裂',
         BridgeName: '胜利路桥',
@@ -20,7 +20,20 @@ app.controller('manageBridgeCheck_controller', ['$scope', '$http', '$modal', '$l
             name:'单连春',
             site : '祊河路(与柳青河西路交汇西138米)',
             sum: '110.42',state:1
-        }];
+        }];*/
+
+    async function selData(){
+        let url = '/maintain/check/select';
+        try{
+            let res = await $http.get(url);
+            $scope.$apply(function () {
+                $scope.checkInfo = res.data;
+            })
+        }catch(e){
+            console.log('get data err'+e);
+        }
+    }
+    selData();
     $scope.update=function(index){
         var modalInstance = $modal.open({
             templateUrl: 'myModalContent.html',

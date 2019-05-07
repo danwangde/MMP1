@@ -1,5 +1,5 @@
 'use strict';
-app.controller('ModalInstanceCtrl', ['$scope', '$modalInstance', 'items', function ($scope, $modalInstance, items) {
+app.controller('ModalInstanceCtrl', ['$scope','$http', '$modalInstance', 'items', function ($scope,$http, $modalInstance, items) {
 
     var apple_selected, tree, treedata_avm, treedata_geography;
     $scope.my_tree_handler = function (branch) {
@@ -12,8 +12,60 @@ app.controller('ModalInstanceCtrl', ['$scope', '$modalInstance', 'items', functi
         }
 
     };
+    console.log(items);
 
-    treedata_avm = [
+    
+    $scope.data = {};
+
+    async function selInfo() {
+        let url = '/passageway/passagewayinfo/selInfo';
+        try {
+            var res = await $http.post(url, items);
+
+            console.log(res.data[0]);
+            $scope.data = res.data[0];
+
+
+        } catch (e) {
+            console.log("get data err" + e);
+        }
+    }
+
+    selInfo();
+
+    //返回结构
+    async function test() {
+        let url = `/passageway/passagewayinfo/tree?PassagewayID=${items.PassagewayID}&PassagewayName=${items.PassagewayName}`;
+        try {
+            var res = await $http.get(url);
+            console.log(res.data);
+            $scope.my_data=res.data;
+        } catch (e) {
+            console.log("get data err" + e);
+        }
+    }
+    // async function init(){
+    //     await test();
+    //     $scope.my_data = treedata_avm;
+    // }
+    test();
+    //人行通道基础信息修改
+    $scope.ok=async function(){
+        if(confirm('你确定要修改此通道吗？')){
+            console.log($scope.data.PassagewayName);
+            let url =  `/passageway/passagewayinfo/update`;
+            try {
+                var res = await $http.post(url, $scope.data);
+    
+                console.log(res.data);
+                selInfo();
+            } catch (e) {
+                console.log("get data err" + e);
+            }
+        }
+       
+    }
+   /*  treedata_avm = [
         {
             bridgeId: 1,
             label: "团体通道",
@@ -49,28 +101,44 @@ app.controller('ModalInstanceCtrl', ['$scope', '$modalInstance', 'items', functi
             ]
         }
     ];
-    $scope.my_data = treedata_avm;
+    $scope.my_data = treedata_avm; */
     $scope.loadHtml ='tpl/modal/passagewayDetail.html';
 }]);
 app.controller('manageBridgePassageway_controller', ['$scope', '$http', '$modal', '$log', function ($scope, $http, $modal, $log) {
-    $scope.passagewayInfo = [
-        {
-            ID: "001",
-            PassagewayName: "团体通道",
-            Length: 1,
-            Width: 1,
-            High: 1,
-            ManageUnit: "天桥区住房和城乡建设局"
-        },
-        {
-            ID: "002",
-            PassagewayName: "	经十路人行通道",
-            Length: 200.0,
-            Width: 15.0,
-            High: 5.0,
-            ManageUnit: "桓台县住房和城乡建设局"
+
+    async function info() {
+        let url = '/passageway/passagewayinfo/select';
+
+        try {
+            var res = await $http.get(url);
+
+            console.log(res.data);
+
+        } catch (e) {
+            console.log("get data err" + e);
         }
-    ];
+
+        $scope.$apply(function () {
+            $scope.passagewayInfo  = res.data;
+        });
+
+    }
+    info();
+
+    $scope.remove = async function (index) {
+        console.log(index);
+        let url = `/passageway/passagewayinfo/delete?PassagewayID=${$scope.passagewayInfo[index].PassagewayID}`;
+        try {
+            var res = await $http.get(url);
+
+            console.log(res.data);
+            info();
+
+        } catch (e) {
+            console.log("get data err" + e);
+        }
+    };
+
     $scope.clickPassageway = function (index) {
 
         var modalInstance = $modal.open({
@@ -79,7 +147,7 @@ app.controller('manageBridgePassageway_controller', ['$scope', '$http', '$modal'
             size: "lg",
             resolve: {
                 items: function () {
-                    return $scope.items;
+                    return $scope.passagewayInfo[index]
                 }
             }
         });

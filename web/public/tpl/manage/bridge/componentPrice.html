@@ -7,21 +7,23 @@
 		<form class="form-inline ng-pristine ng-valid" role="form">
 			<div class="form-group">
 				<label for="exampleInputPassword1">所属类型：</label>
-				<select name="" id="exampleInputPassword1" class="form-control">
+				<select name="" id="exampleInputPassword1" class="form-control" ng-model="type">
 					<option value="">--请选择--</option>
-					<option value="0">桥梁构件</option>
-					<option value="1">人行通道构件</option>
+					<option value="桥梁构件">桥梁构件</option>
+					<option value="人行通道构件">人行通道构件</option>
 				</select>
 			</div>
 			<div class="form-group">
-				<label for="exampleInputPassword2">构件类型：</label>
-				<input type="text" class="form-control" id="exampleInputPassword2" placeholder="构件类型">
+				<label for="exampleInputPassword2">构件名称：</label>
+				<input type="text" class="form-control" id="exampleInputPassword2" placeholder="构件名称" ng-model="name">
 			</div>
-			<button class="btn btn-success" style="border-radius: 4px;" ng-click="selDisease()">
-				<span class="glyphicon glyphicon-search">查询</span>
+			<button class="btn btn-success" style="border-radius: 4px;" ng-click="search()">
+				<span class="glyphicon glyphicon-search"></span>
+				查询
 			</button>
-			<button class="btn btn-danger" style="border-radius: 4px;" ng-click="componentUpdate(items)">
-				<span class="glyphicon glyphicon-search">新增构件单价</span>
+			<button class="btn btn-danger btn-sm" style="border-radius: 4px;" ng-click="componentUpdate(items)">
+				<span class="glyphicon glyphicon-plus-sign"aria-hidden="true"></span>
+				新增构件单价
 			</button>
 		</form>
 	</div>
@@ -56,11 +58,11 @@
 
 					<tr ng-repeat=" item in compontPrice ">
 						<td>{{item.ComponentType}}</td>
-						<td>{{item.compontName}}</td>
-						<td>{{item.superStructure}}</td>
-						<td>{{item.repairPrice}}</td>
+						<td>{{item.ComponentName}}</td>
+						<td>{{item.BelonStruct}}</td>
+						<td>{{item.RepairPrice}}</td>
 						<td><a href="javascript:void(0);" style="color:#337ab7;" ng-click="componentUpdate(item)"><span class="glyphicon glyphicon-edit"></span></a></td>
-						<td  ng-click="componentRemove($index)">
+						<td  ng-click="componentRemove(item)">
 							
 							<a href="" class="greenLook"><i class="glyphicon glyphicon-remove-sign"></i></a>
 						</td>

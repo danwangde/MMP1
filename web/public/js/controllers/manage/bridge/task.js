@@ -1,45 +1,83 @@
 app.controller('ModalInstanceCtrl', ['$scope', '$modalInstance', 'items', function ($scope, $modalInstance, items) {
-    console.log(items)
+    $scope.update = items;
+
+    $scope.ok = function() {
+        $modalInstance.close({
+            message: 'ok',
+            data:function () {
+                if($scope.total.title=='insert'){
+                    return ''
+                }
+                else{
+                    return $scope.update
+                }
+            }
+        })
+    };
+    $scope.cancel = function() {
+        $modalInstance.close({
+            message:'cancel'
+        });
+    };
 
 }]);
-app.controller('manageBridgeTask_controller', ['$scope', '$http', '$modal', '$log', function ($scope, $http, $modal, $log) {
-    $scope.maintainInfo = [{
-        BridgeID: '1',
-        BridgeNum: 'HT005',
-        BridgeName: '胜利路桥',
-        BridgeType: '梁桥',
-        CuringGrade: 'I等',
-        time: '365天',
-        num: 5,
-        maintainDept: '天桥区住房和城乡建设局'
-    },
-        {
-            BridgeID: '2',
-            BridgeNum: 'HT004',
-            BridgeName: '八一路桥',
-            BridgeType: '圬工拱桥（无拱上构造）',
-            CuringGrade: 'II等',
-            time: '30天',
-            num: 5,
-            maintainDept: '淄川区住房和城乡建设局'
-        }];
-    $scope.update=function(index){
+app.controller('manageBridgeTask_controller', ['$scope', '$http', '$filter','$modal', '$log', function ($scope, $http,$filter, $modal, $log) {
+
+
+
+    $scope.search = function () {
+        $scope.sel = [
+            {value:0,name:'梁桥'},
+            {value:1,name:'桁架桥'}
+        ];
+        $scope.maintainInfo = $filter('search')($scope.maintainInfo,$scope.key,$scope.name,$scope.type);
+    };
+    async function info(){
+        let url = '/maintain/task/select';
+
+        try{
+            var res = await $http.get(url);
+
+            console.log(res.data);
+
+        } catch(e){
+            console.log("get data err" + e);
+        }
+
+
+        $scope.$apply(function () {
+            $scope.maintainInfo =res.data;
+        });
+
+    }
+    info();
+    $scope.items = {BridgeID:'',Cycle:'',Frequency:'',PatrolUnit:''};
+    $scope.update=function(item){
         var modalInstance = $modal.open({
             templateUrl: 'myModalContent.html',
             controller: 'ModalInstanceCtrl',
             size: '',
             resolve: {
                 items: function () {
-                    return $scope.maintainInfo[index];
+                    $scope.items=item;
+                    return $scope.items;
                 }
 
             }
         });
 
-        modalInstance.result.then(function (selectedItem) {
-            $scope.selected = selectedItem;
+        modalInstance.result.then(async function (rs) {
+            if(rs.message=='ok'){
+                let url ='/maintain/task/update';
+                try{
+                    var res = await $http.post(url,$scope.items);
+                    info();
+                }catch (e) {
+                    console.log('update data err'+e);
+                }
+            }
         }, function () {
             $log.info('Modal dismissed at: ' + new Date());
         });
     }
-}])
+}]);

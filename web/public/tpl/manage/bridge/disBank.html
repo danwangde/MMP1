@@ -6,21 +6,22 @@
 		<form class="form-inline ng-pristine ng-valid" role="form">
 			<div class="form-group">
 				<label > 所属类型：</label>
-				<select class="form-control  inline" ng-options="x.name for x in damageType" ng-model="daType">
+				<select class="form-control  inline" ng-options="x.name as x.name for x in belongType" ng-model="Type">
 					<option value="">--请选择--</option>
 
 				</select>
 			</div>
 			<div class="form-group">
 				<label for="exampleInputPassword2">构件类型：</label>
-				<input type="text" class="form-control" id="exampleInputPassword2" placeholder="构件类型">
+				<input type="text" class="form-control" id="exampleInputPassword2" placeholder="构件类型" ng-model="CompType">
 			</div>
 			<div class="form-group">
-				<label for="exampleInputEmail1">损坏类型：</label>
-				<input type="text" class="form-control" id="exampleInputEmail1">
+				<label for="exampleInputPassword3">损坏类型：</label>
+				<input type="text" class="form-control" id="exampleInputPassword3" placeholder="损坏类型" ng-model="DamageType">
 			</div>
-			<button class="btn btn-success" style="border-radius: 4px;" ng-click="selDisease()">
-				<span class="glyphicon glyphicon-search">查询</span>
+			<button class="btn btn-success" style="border-radius: 4px;" ng-click="search()">
+				<span class="glyphicon glyphicon-search"></span>
+				查询
 			</button>
 		</form>
 	</div>
@@ -57,12 +58,12 @@
 					<tbody>
 
 					<tr ng-repeat=" item in disBank ">
-						<td>{{item.diseaseType}}</td>
-						<td>{{item.diseaseConType}}</td>
-						<td>{{item.ComponentType}}</td>
+						<td>{{item.DiseaseType}}</td>
+						<td>{{item.Type}}</td>
+						<td>{{item.CompType}}</td>
 						<td>{{item.DamageType}}</td>
-						<td title="{{item.DiseaseDef}}">{{item.DiseaseDef.slice(0,8)}}</td>
-						<td title="{{item.Remark}}">{{item.Remark.slice(0,8)}}</td>
+						<td title="{{item.DiseaseDefine}}">{{item.DiseaseDefine.slice(0,8)}}</td>
+						<td title="{{item.DamageExplain}}">{{item.DamageExplain.slice(0,8)}}</td>
 						<td ng-click="notice(item)">
 							<a href="" class="redLook" title="查看"><i class="glyphicon glyphicon-hand-up"></i></a>
 						</td>

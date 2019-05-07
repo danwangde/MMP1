@@ -1,15 +1,26 @@
-app.controller('manageComponentPrice_controller',['$scope','$http','$modal','$log',function ($scope,$http,$modal,$log) {
-    console.log('manageComponentPrice_controller');
+app.controller('manageComponentPrice_controller',['$scope','$http','$filter','$modal','$log',function ($scope,$http,$filter,$modal,$log) {
 
-    $scope.compontPrice = [
-        {ComponentType:'桥梁构件',compontName:'主节点',superStructure:'跨',repairPrice:'100'},
-        {ComponentType:'桥梁构件',compontName:'出入口',superStructure:'桥墩',repairPrice:'100'},
-        {ComponentType:'人行通道构件',compontName:'主节点',superStructure:'桥台',repairPrice:'100'},
-        {ComponentType:'桥梁构件',compontName:'主节点',superStructure:'抗震设施',repairPrice:'100'},
-        {ComponentType:'桥梁构件',compontName:'主节点',superStructure:'跨',repairPrice:'100'}
-    ];
+    $scope.search = function () {//查询
+        $scope.compontPrice = $filter('price')($scope.compontPrice,$scope.type,$scope.name);
+    };
 
-    $scope.items =  {ComponentType:'',compontName:'',superStructure:'',repairPrice:''};
+
+    async function selPrice(){   //查表 获取数据
+        let url = '/price/select';
+        try{
+            var res =await $http.get(url);
+            console.log(res.data);
+        }catch(e){
+            console.log('get data err'+e)
+        }
+        $scope.$apply(function () {
+            $scope.compontPrice = res.data;
+        })
+    }
+
+    selPrice();
+
+    $scope.items =  {ComponentType:'',ComponentName:'',BelonStruct:'',RepairPrice:''};
     $scope.componentUpdate=function(size){
         console.log(size);
         var modalInstance = $modal.open({
@@ -21,7 +32,7 @@ app.controller('manageComponentPrice_controller',['$scope','$http','$modal','$lo
             resolve: {
                 items: function () {
                    $scope.items=size;
-                   if(size.ComponentType=='' && size.compontName=='' && size.superStructure=='' && size.repairPrice==''){
+                   if(size.ComponentType=='' && size.ComponentName=='' && size.BelonStruct=='' && size.RepairPrice==''){
                        $scope.items.title='insert'
                    }
                    else{
@@ -35,23 +46,47 @@ app.controller('manageComponentPrice_controller',['$scope','$http','$modal','$lo
             }
         });
 
-        modalInstance.result.then(function (rs) {
-            if(rs.message=='ok'){
+        modalInstance.result.then(async function (rs) {
+            if(rs.message=='ok'){  //新增
                if ($scope.items.title=='insert'){
-                   $scope.compontPrice.push($scope.items);
+                  let url = '/price/insert';
+                  try{
+                      var res = await $http.post(url,$scope.items);
+                      selPrice();
+                  }catch (e) {
+                      console.log('get data err'+e)
+                  }
                }
-               else{
-                   //$scope.items=rs.data;
+               else{ //修改
+                   let url = '/price/update';
+                   try{
+                       var res = await $http.post(url,$scope.items);
+                       selPrice();
+                   }catch (e) {
+                       console.log('get data err'+e)
+                   }
                }
             }
-            $scope.items =  {ComponentType:'',compontName:'',superStructure:'',repairPrice:''};
+            $scope.items =  {ComponentType:'',ComponentName:'',BelonStruct:'',RepairPrice:''};
 
         }, function () {
             $log.info('Modal dismissed at: ' + new Date());
         });
     };
-    $scope.componentRemove = function (index) {
-        $scope.compontPrice.splice(index,1);
+    $scope.componentRemove =async function (item) {
+        if (confirm("您确定删除该单价信息") == true) { //删除信息
+            console.log(item);
+            let url = '/price/delete?id='+item.id;
+            try{
+                var res = await $http.get(url);
+                await selPrice();
+            }catch (e) {
+                console.log('get data err'+e)
+            }
+        }else{
+            return false;
+        }
+
     }
 
 

@@ -1,25 +1,26 @@
-app.controller('manageBridgeDisBank_controller',['$scope','$http','$modal','$log',function ($scope,$http,$modal,$log) {
-   
-    $scope.disBank = [
-        {
-            diseaseType:'市政桥梁病害库',
-            diseaseConType:'桥梁构件',
-            ComponentType:'衬砌和挡墙',
-            DamageType:'桥面贯通纵缝',
-            DiseaseDef:'外部装饰板的构件损坏后',
-            Remark:'“无”指伸缩缝处没有渗水痕迹；“轻微”指伸缩缝处轻微渗水，渗水痕迹面积不大且不明显；“严重”指伸缩缝处严重渗水，渗水痕迹面积较大且非常明显'
-        },
-        {
-            diseaseType:'市政桥梁病害库',
-            diseaseConType:'人行通道构件',
-            ComponentType:'主拱圈',
-            DamageType:'牛腿表面损伤',
-            DiseaseDef:'外部装饰板的构件损',
-            Remark:'“无”指伸缩缝处没有渗水痕迹；“轻微”指伸缩缝处轻微渗水，渗水痕迹面积不大且不明显；“严重”指伸缩缝处严重渗水，渗水痕迹面积较大且非常明显'
-        }
-    ];
+app.controller('manageBridgeDisBank_controller',['$scope','$http','$filter','$modal','$log',function ($scope,$http,$filter,$modal,$log) {
 
-    $scope.damageType = [
+
+    $scope.search = function () {
+        console.log($scope.damageType);
+        $scope.disBank = $filter('disease')($scope.disBank,$scope.Type,$scope.CompType,$scope.DamageType);
+    };
+    async function getDisInfo() {
+        let url = '/disease/select';
+        try{
+            var res =await $http.get(url);
+            $scope.$apply(function () {
+                $scope.disBank=res.data;
+            })
+        }catch(e){
+            console.log('get data err'+e)
+        }
+
+    }
+
+    getDisInfo();
+
+    $scope.belongType = [
         {value:'0',name:'桥梁构件'},
         {value:'1',name:'人行通道构件'}
     ];

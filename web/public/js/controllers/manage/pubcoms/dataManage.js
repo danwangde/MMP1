@@ -17,7 +17,7 @@ app.controller('managePublicDataManage_controller',['$scope','$http',function($s
         }
     ];
 
-    $scope.damageType = [
+    $scope.belongType = [
         {value:'0',name:'桥梁'},
         {value:'1',name:'人行通道'},
         {value:'2',name:'隧道'},

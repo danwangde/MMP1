@@ -1,5 +1,5 @@
 'use strict';
-app.controller('ModalInstanceCtrl', ['$scope', '$modalInstance', 'items', '$compile', function ($scope, $modalInstance, items, $compile) {
+app.controller('ModalInstanceCtrl', ['$scope', '$modalInstance', '$http', '$filter', 'items', '$compile', function ($scope, $modalInstance, $http, $filter, items, $compile) {
     var html, template, mobileDialogElement;
     $scope.bigImg = function (num) {
         if (num == 1) {
@@ -18,60 +18,41 @@ app.controller('ModalInstanceCtrl', ['$scope', '$modalInstance', 'items', '$comp
             mobileDialogElement.remove();
         }
     };
-    $scope.lookVideo=function(){
+    $scope.lookVideo = function () {
         html = "<video style='max-width:80%;max-height:800px;margin-left:50%;margin-top:50px;transform: translate(-50%, -0%);' controls><source src='../img/ceshi.mp4' type='video/mp4'></source></video>";
         template = angular.element(html);
         mobileDialogElement = $compile(template)($scope);
 
         angular.element("#bigImg").append(mobileDialogElement);
     };
-    let treedata_avm = [{
-        bridgeId: 1,
-        label: '胜利路桥',
-        children: [
-            {
-                lineId: 1,
-                label: '高速方向',
-                children: [
-                    {
-                        typeId: 1,
-                        label: '上部结构',
-                        children: [
-                            {spanId: 1, label: '第一跨'},
-                            {spanId: 2, label: '第二跨'},
-                            {spanId: 3, label: '第三跨'}
-                        ]
-                    },
-                    {
-                        typeId: 2,
-                        label: '下部结构',
-                        children: [
-                            {abutmentId: 1, label: '桥台1'},
-                            {abutmentId: 2, label: '桥台2'},
-                            {abutmentId: 3, label: '桥墩1'}
-                        ]
-                    },
-                    {
-                        typeId: 3,
-                        label: '桥面系'
+    /* ..................................................................................................................................... 生成桥结构树 */
+    async function test() {
+        let url = `/bridge/bridgeinfo/tree?BridgeID=${items.BridgeID}&BridgeName=${items.BridgeName}`;
+        try {
+            var res = await $http.get(url);
+            console.log(res.data);
+            $scope.my_data=res.data;
+        } catch (e) {
+            console.log("get data err" + e);
+        }
+    }
+    test();
+     /* ..................................................................................................................................... 返回桥基本信息 */
+    $scope.data = {};
+    async function selInfo() {
+        let url = '/bridge/bridgeinfo/selInfo';
+        try {
+            var res = await $http.post(url, items);
 
-                    },
-                    {
-                        typeId: 4,
-                        label: '附属设施'
+            console.log(res.data);
+            $scope.data = res.data[0];
 
-                    },
-                    {
-                        typeId: 5,
-                        label: '抗震设施'
 
-                    }
-                ]
-            }
-        ]
-
-    }];
-    $scope.my_data = treedata_avm;
+        } catch (e) {
+            console.log("get data err" + e);
+        }
+    }
+    selInfo();
     $scope.loadHtml = 'tpl/modal/bridgeDetail.html';
     $scope.my_tree_handler = function (branch) {
 
@@ -79,53 +60,121 @@ app.controller('ModalInstanceCtrl', ['$scope', '$modalInstance', 'items', '$comp
             $scope.loadHtml = 'tpl/modal/bridgeDetail.html';
         } else if (branch.level == 2) {
             $scope.loadHtml = 'tpl/modal/bridgeLine.html';
-        }
-        else if (branch.level == 4 && branch.spanId) {
+        } else if (branch.level == 4 && branch.spanId) {
             $scope.loadHtml = 'tpl/modal/bridgeSpan.html';
-        }
-        else if (branch.level == 4 && branch.abutmentId) {
+        } else if (branch.level == 4 && branch.abutmentId) {
             $scope.loadHtml = 'tpl/modal/bridgePier.html';
         }
 
     };
 
+    /* ..................................................................................................................................... 修改桥基本信息确认 */
+    $scope.ok=async function(){
+        if(confirm('你确定要修改此桥梁吗？')){
+            console.log($scope.data.BridgeName);
+            let url =  `/bridge/bridgeinfo/update`;
+            try {
+                var res = await $http.post(url, $scope.data);
+
+                console.log(res.data);
+                selInfo();
+            } catch (e) {
+                console.log("get data err" + e);
+            }
+        }
+    }
+
+    //建造历史
+    async function his() {
+        let url = '/bridge/history/select';
+        try {
+            let res = await $http.post(url, items);
+            for (let [index, item] of res.data.entries()) {
+                item.BuildDate = get_date_str(new Date(res.data[index].BuildDate));
+            }
+            $scope.history = res.data;
+        } catch (e) {
+            console.log('get data err' + e);
+        }
+    }
+    his();
+    $scope.hisData = {
+        type: '',
+        date: ''
+    };
+    $scope.search = function () {
+
+        //$scope.buildType='改扩建';
+        $scope.history = $filter('BriHis')($scope.history, $scope.hisData.type, $scope.hisData.date);
+
+        console.log($scope.buildType);
+        console.log(111111);
+    }
+
+
+    function get_date_str(Date) {
+        var Y = Date.getFullYear();
+        var M = Date.getMonth() + 1;
+        M = M < 10 ? '0' + M : M; // ??????0
+        var D = Date.getDate();
+        D = D < 10 ? '0' + D : D;
+        var H = Date.getHours();
+        H = H < 10 ? '0' + H : H;
+        var Mi = Date.getMinutes();
+        Mi = Mi < 10 ? '0' + Mi : Mi;
+        var S = Date.getSeconds();
+        S = S < 10 ? '0' + S : S;
+        return Y + '-' + M + '-' + D + ' ' + H + ':' + Mi + ':' + S;
+    }
+
 
 
 }]);
-app.controller('manageBridgeInfo_controller', ['$scope', '$http', '$modal', '$log', '$compile', function ($scope, $http, $modal, $log, $compile) {
+app.controller('manageBridgeInfo_controller', ['$scope', '$http', '$filter', '$modal', '$log', '$compile', function ($scope, $http, $filter, $modal, $log, $compile) {
 
-    $scope.bridgeInfo = [{
-        BridgeID: '1',
-        BridgeNum: 'HT005',
-        BridgeName: '胜利路桥',
-        BridgeType: '梁桥',
-        MainLength: '1000',
-        CuringGrade: 'I等',
-        ManageUnit: '桓台县住房和城乡建设局'
-    },
-        {
-            BridgeID: '2',
-            BridgeNum: 'HT004',
-            BridgeName: '八一路桥',
-            BridgeType: '圬工拱桥（无拱上构造）',
-            MainLength: '200',
-            CuringGrade: 'II等',
-            ManageUnit: '淄博市城乡建设委员会'
-        },
-        {
-            BridgeID: '2',
-            BridgeNum: 'HT004',
-            BridgeName: '八一路桥',
-            BridgeType: '圬工拱桥（无拱上构造）',
-            MainLength: '200',
-            CuringGrade: 'II等',
-            ManageUnit: '淄博市城乡建设委员会'
-        }];
+    $scope.search = function () {
+        $scope.sel = [{
+                value: 0,
+                name: '梁桥'
+            },
+            {
+                value: 1,
+                name: '桁架桥'
+            }
+        ];
 
-    // $scope.bridgeDetail=
-    $scope.delBridge = function (index) {
-        console.log(index)
+        $scope.bridgeInfo = $filter('search')($scope.bridgeInfo, $scope.key, $scope.name, $scope.type);
+    };
+    async function info() {
+        let url = '/bridge/bridgeinfo/select';
+
+        try {
+            var res = await $http.get(url);
+
+        } catch (e) {
+            console.log("get data err" + e);
+        }
+
+        $scope.$apply(function () {
+            $scope.bridgeInfo = res.data;
+        });
+
     }
+    info();
+
+    $scope.remove = async function (index) {
+        let url = '/bridge/bridgeinfo/delete';
+        try {
+            var res = await $http.post(url, $scope.bridgeInfo[index]);
+
+            console.log(res.data);
+            info();
+
+        } catch (e) {
+            console.log("get data err" + e);
+        }
+    };
+
     $scope.clickBridge = function (index) {
         var modalInstance = $modal.open({
             templateUrl: 'myModalContent.html',
@@ -133,18 +182,18 @@ app.controller('manageBridgeInfo_controller', ['$scope', '$http', '$modal', '$lo
             size: 'lg',
             resolve: {
                 items: function () {
-                    return $scope.items;
+                    return $scope.bridgeInfo[index]
                 }
 
             }
         });
-
         modalInstance.result.then(function (selectedItem) {
-            $scope.selected = selectedItem;
+
+            console.log(selectedItem)
         }, function () {
             $log.info('Modal dismissed at: ' + new Date());
         });
     };
 
 
-}])
+}]);
